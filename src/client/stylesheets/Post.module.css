@@ -1,0 +1,13 @@
+.post_container {
+  height: 100%;
+}
+
+.post_form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.post_form > textarea {
+  height: 100%;
+}
