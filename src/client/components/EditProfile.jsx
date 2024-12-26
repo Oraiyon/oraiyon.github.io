@@ -3,7 +3,7 @@ import styles from "../stylesheets/EditProfile.module.css";
 import BackHeader from "./BackHeader";
 
 const EditProfile = () => {
-  const [user, setUser, previousPage, setPreviousPage] = useOutletContext();
+  const [user, setUser, post, setPost] = useOutletContext();
 
   if (user) {
     return (
