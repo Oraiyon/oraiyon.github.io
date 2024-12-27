@@ -93,11 +93,12 @@ const PostList = (props) => {
                 <p onClick={() => displayLikes(post)}>
                   {post.Likes.length} {post.Likes.length !== 1 ? "Likes" : "Like"}
                 </p>
-                <Link to={`/${post.id}/likes`} ref={likesLink} />
                 <p onClick={() => displayComments(post)}>
                   View {post._count.Comments} {post._count.Comments !== 1 ? "Comments" : "Comment"}
                 </p>
-                <Link to={`/${post.id}/comments`} ref={commentsLink} />
+                {/* post.id not updating in Link. Move out of post_container? */}
+                <Link to={`/${props.post.id}/likes`} ref={likesLink} />
+                <Link to={`/${props.post.id}/comments`} ref={commentsLink} />
                 <DisplayDate date={post.postDate} />
               </div>
             ) : (
