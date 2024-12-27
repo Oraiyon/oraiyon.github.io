@@ -26,7 +26,15 @@ const Feed = () => {
   if (user && followingPosts) {
     return (
       <div className={styles.feed_container}>
-        <PostList followingPosts={followingPosts} />
+        <PostList
+          user={user}
+          mode={"profile"}
+          // Comments all for this post
+          post={post}
+          setPost={setPost}
+          userProfile={null}
+          followingPosts={followingPosts}
+        />
       </div>
     );
   }
