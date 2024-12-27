@@ -28,8 +28,12 @@ const PostList = (props) => {
         console.log(error);
       }
     };
-    getPosts();
-  }, []);
+    if (!props.followingPosts) {
+      getPosts();
+    } else {
+      setPostList(props.followingPosts);
+    }
+  }, [props.followingPosts]);
 
   const DisplayDate = (props) => {
     const date = new Date(props.date);
