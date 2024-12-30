@@ -40,7 +40,7 @@ const Likes = () => {
           </div>
         ))
       ) : (
-        <p>No likes.</p>
+        <p className={styles.no_likes}>No likes.</p>
       )}
     </div>
   );
