@@ -21,7 +21,17 @@ const Comments = () => {
         console.log(error);
       }
     };
+    const fetchPost = async () => {
+      try {
+        const response = await fetch(`/api/get/${window.location.pathname.split("/")[1]}`);
+        const data = await response.json();
+        setPost(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     fetchComments();
+    fetchPost();
   }, []);
 
   const DisplayDate = (props) => {
@@ -58,7 +68,7 @@ const Comments = () => {
   return (
     <div className={styles.comments_container}>
       <div>
-        {postComments ? <BackHeader post={postComments[0].post.text} mode={"comments"} /> : ""}
+        {post ? <BackHeader post={post.text} mode={"comments"} /> : ""}
         {postComments && postComments.length ? (
           postComments.map((comment) => (
             <div key={comment.id} className={styles.comment_card}>
