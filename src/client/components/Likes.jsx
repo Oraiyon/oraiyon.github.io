@@ -18,9 +18,7 @@ const Likes = () => {
         console.log(error);
       }
     };
-    if (!post) {
-      fetchLikes();
-    }
+    fetchLikes();
   }, []);
 
   return (
