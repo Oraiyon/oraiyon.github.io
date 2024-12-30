@@ -1,13 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../stylesheets/PostList.module.css";
 import ToProfile from "./ToProfile";
 import { Link } from "react-router-dom";
 
 const PostList = (props) => {
   const [postList, setPostList] = useState([]);
-
-  const commentsLink = useRef(null);
-  const likesLink = useRef(null);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -45,11 +42,6 @@ const PostList = (props) => {
     return <p className={styles.post_date}>{date.toLocaleDateString("en-us", options)}</p>;
   };
 
-  const displayLikes = (post) => {
-    props.setPost(post);
-    likesLink.current.click();
-  };
-
   const likePost = async (postId) => {
     try {
       if (props.user) {
@@ -72,11 +64,6 @@ const PostList = (props) => {
     }
   };
 
-  const displayComments = async (post) => {
-    props.setPost(post);
-    commentsLink.current.click();
-  };
-
   return (
     <>
       {postList && postList.length ? (
@@ -90,15 +77,12 @@ const PostList = (props) => {
                   <ToProfile searchedUser={post.author} mode={"profile"} />
                 )}
                 <p onClick={() => likePost(post.id)}>{post.text}</p>
-                <p onClick={() => displayLikes(post)}>
+                <Link to={`/${post.id}/likes`}>
                   {post.Likes.length} {post.Likes.length !== 1 ? "Likes" : "Like"}
-                </p>
-                <p onClick={() => displayComments(post)}>
+                </Link>
+                <Link to={`/${post.id}/comments`}>
                   View {post._count.Comments} {post._count.Comments !== 1 ? "Comments" : "Comment"}
-                </p>
-                {/* post.id not updating in Link. Move out of post_container? */}
-                <Link to={`/${props.post.id}/likes`} ref={likesLink} />
-                <Link to={`/${props.post.id}/comments`} ref={commentsLink} />
+                </Link>
                 <DisplayDate date={post.postDate} />
               </div>
             ) : (
