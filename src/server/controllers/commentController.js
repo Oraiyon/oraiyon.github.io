@@ -34,7 +34,7 @@ const post_comment = expressAsyncHandler(async (req, res, next) => {
 export const get_comments = expressAsyncHandler(async (req, res, next) => {
   const commentList = await prisma.comment.findMany({
     where: {
-      postId: req.body.post
+      postId: req.params.postId
     },
     include: {
       Reply: {
