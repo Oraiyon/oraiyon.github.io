@@ -74,7 +74,7 @@ const PostList = (props) => {
                 {props.mode !== "profile" ? (
                   <ToProfile searchedUser={post.author} user={props.user} />
                 ) : (
-                  <ToProfile searchedUser={post.author} mode={"profile"} />
+                  <ToProfile searchedUser={post.author} />
                 )}
                 <p onClick={() => likePost(post.id)}>{post.text}</p>
                 <Link to={`/${post.id}/likes`}>
