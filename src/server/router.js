@@ -3,7 +3,8 @@ import signup, {
   get_search_user,
   get_user_profile,
   login,
-  logout
+  logout,
+  put_user_profile_username
 } from "./controllers/userControllers.js";
 import post_request, {
   delete_request,
@@ -36,6 +37,7 @@ router.post("/login", login);
 router.get("/logout", logout);
 router.get("/api/search/:username", get_search_user);
 router.get("/api/:id/profile", get_user_profile);
+router.put("/api/user/edit/username", put_user_profile_username);
 
 // requestControllers
 // router.get("/api/:sender/requests/:receiver", get_sent_request);

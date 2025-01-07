@@ -120,4 +120,39 @@ export const get_user_profile = expressAsyncHandler(async (req, res, next) => {
   res.status(200).json(user);
 });
 
+export const put_user_profile_username = [
+  body("username", "Invalid Username")
+    .trim()
+    .isLength({ min: 3 })
+    .isLength({ max: 20 })
+    .toLowerCase()
+    .escape(),
+  expressAsyncHandler(async (req, res, next) => {
+    const takenUsername = await prisma.user.findFirst({
+      where: {
+        username: req.body.username
+      }
+    });
+    const errors = validationResult(req);
+    const usernameTaken = await prisma.user.findFirst({
+      where: {
+        username: req.body.username
+      }
+    });
+    if (!errors.isEmpty() || usernameTaken) {
+      res.status(200).json(false);
+      return;
+    }
+    const user = await prisma.user.update({
+      where: {
+        id: req.body.id
+      },
+      data: {
+        username: req.body.username
+      }
+    });
+    res.status(200).json(user);
+  })
+];
+
 export default signup;
