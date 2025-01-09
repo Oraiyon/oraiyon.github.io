@@ -4,6 +4,7 @@ import signup, {
   get_user_profile,
   login,
   logout,
+  put_user_profile_picture,
   put_user_profile_username
 } from "./controllers/userControllers.js";
 import post_request, {
@@ -38,6 +39,7 @@ router.get("/logout", logout);
 router.get("/api/search/:username", get_search_user);
 router.get("/api/:id/profile", get_user_profile);
 router.put("/api/user/edit/username", put_user_profile_username);
+router.put("/api/user/edit/picture", put_user_profile_picture);
 
 // requestControllers
 // router.get("/api/:sender/requests/:receiver", get_sent_request);

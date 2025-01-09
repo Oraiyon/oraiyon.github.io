@@ -3,8 +3,21 @@ import expressAsyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
 import passport from "passport";
+import multer from "multer";
+import { unlink } from "node:fs/promises";
+import { v2 as cloudinary } from "cloudinary";
 
 const prisma = new PrismaClient();
+
+// dest starts from root directory
+const upload = multer({ dest: "./src/server/public/uploads" });
+
+cloudinary.config({
+  // Put in Railway
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 const signup = [
   body("username", "Invalid Username")
@@ -149,6 +162,33 @@ export const put_user_profile_username = [
       },
       data: {
         username: req.body.username
+      },
+      include: {
+        FollowedBy: true,
+        Following: true
+      }
+    });
+    res.status(200).json(user);
+  })
+];
+
+export const put_user_profile_picture = [
+  upload.single("file"),
+  expressAsyncHandler(async (req, res, next) => {
+    const imageURL = await cloudinary.uploader.upload(req.file.path, {
+      folder: "odinbook"
+    });
+    await unlink(req.file.path);
+    const user = await prisma.user.update({
+      where: {
+        id: req.body.id
+      },
+      data: {
+        profilePicturerofilePicture: imageURL.secure_url
+      },
+      include: {
+        FollowedBy: true,
+        Following: true
       }
     });
     res.status(200).json(user);
