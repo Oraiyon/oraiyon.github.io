@@ -14,17 +14,18 @@ datasource db {
 }
 
 model User {
-  id               String    @id @default(uuid())
-  username         String    @unique @db.VarChar(20)
-  password         String
-  FollowedBy       Follow[]  @relation("FollowedBy")
-  Following        Follow[]  @relation("Following")
-  SentRequests     Request[] @relation("SentRequests")
-  ReceivedRequests Request[] @relation("ReceivedRequests")
-  Posts            Post[]
-  Comments         Comment[]
-  Likes            Likes[]
-  Reply            Reply[]
+  id             String    @id @default(uuid())
+  username       String    @unique @db.VarChar(20)
+  password       String
+  FollowedBy     Follow[]  @relation("FollowedBy")
+  Following      Follow[]  @relation("Following")
+  // SentRequests     Request[] @relation("SentRequests")
+  // ReceivedRequests Request[] @relation("ReceivedRequests")
+  Posts          Post[]
+  Comments       Comment[]
+  Likes          Likes[]
+  Reply          Reply[]
+  profilePicture String?
 
   @@map("users")
 }
@@ -40,16 +41,16 @@ model Follow {
   @@map("follows")
 }
 
-model Request {
-  id          String   @id @default(uuid())
-  requestDate DateTime @default(now())
-  sender      User     @relation("SentRequests", fields: [senderId], references: [id])
-  senderId    String
-  receiver    User     @relation("ReceivedRequests", fields: [receiverId], references: [id])
-  receiverId  String
+// model Request {
+//   id          String   @id @default(uuid())
+//   requestDate DateTime @default(now())
+//   sender      User     @relation("SentRequests", fields: [senderId], references: [id])
+//   senderId    String
+//   receiver    User     @relation("ReceivedRequests", fields: [receiverId], references: [id])
+//   receiverId  String
 
-  @@map("requests")
-}
+//   @@map("requests")
+// }
 
 model Post {
   id       String    @id @default(uuid())
