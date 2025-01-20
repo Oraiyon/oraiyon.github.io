@@ -30,6 +30,13 @@ const BackHeader = (props) => {
         <p>{props.user.username}</p>
       </div>
     );
+  } else if (props.mode === "settings") {
+    return (
+      <div className={styles.backHeader_container_profile}>
+        <Icon path={mdiArrowLeft} onClick={() => navigate(-1)} />
+        <p>Settings</p>
+      </div>
+    );
   }
 };
 

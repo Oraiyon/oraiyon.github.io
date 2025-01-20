@@ -10,6 +10,7 @@ import Comments from "./components/Comments";
 import Likes from "./components/Likes";
 import Account from "./components/Account";
 import Post from "./components/Post";
+import EditAccount from "./components/EditAccount";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -52,6 +53,10 @@ const Router = () => {
         {
           path: "/user/account",
           element: <Account />
+        },
+        {
+          path: "/user/account/edit",
+          element: <EditAccount />
         },
         {
           path: "/post",
