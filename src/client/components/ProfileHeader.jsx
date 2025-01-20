@@ -77,7 +77,7 @@ const ProfileHeader = (props) => {
           />
         </div>
         {props.mode === "user" ? (
-          <button onClick={() => editLinkRef.current.click()}>Edit Profile</button>
+          <button onClick={() => editLinkRef.current.click()}>Account</button>
         ) : (
           ""
         )}
@@ -93,7 +93,7 @@ const ProfileHeader = (props) => {
       ) : (
         ""
       )}
-      <Link to={"/user/edit"} ref={editLinkRef} />
+      <Link to={"/user/account"} ref={editLinkRef} />
     </header>
   );
 };

@@ -1,9 +1,9 @@
 import { useOutletContext } from "react-router-dom";
-import styles from "../stylesheets/EditProfile.module.css";
+import styles from "../stylesheets/Account.module.css";
 import BackHeader from "./BackHeader";
 import { useRef } from "react";
 
-const EditProfile = () => {
+const Account = () => {
   const [user, setUser, post, setPost] = useOutletContext();
 
   const profilePictureRef = useRef(null);
@@ -60,13 +60,9 @@ const EditProfile = () => {
 
   if (user) {
     return (
-      <div className={styles.editProfile_container}>
+      <div className={styles.account_container}>
         <BackHeader mode={"user"} user={user} />
-        <form
-          className={styles.editProfile_form}
-          onSubmit={submitEdits}
-          encType="multipart/form-data"
-        >
+        <form className={styles.account_form} onSubmit={submitEdits} encType="multipart/form-data">
           <div>
             <label htmlFor="change_profile_picture">Change Profile Picture</label>
             <input type="file" id="change_profile_picture" ref={profilePictureRef} />
@@ -86,4 +82,4 @@ const EditProfile = () => {
   }
 };
 
-export default EditProfile;
+export default Account;

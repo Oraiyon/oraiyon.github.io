@@ -8,7 +8,7 @@ import Profile from "./components/Profile";
 import User from "./components/User";
 import Comments from "./components/Comments";
 import Likes from "./components/Likes";
-import EditProfile from "./components/EditProfile";
+import Account from "./components/Account";
 import Post from "./components/Post";
 
 const Router = () => {
@@ -50,8 +50,8 @@ const Router = () => {
           element: <User />
         },
         {
-          path: "/user/edit",
-          element: <EditProfile />
+          path: "/user/account",
+          element: <Account />
         },
         {
           path: "/post",
