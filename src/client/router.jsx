@@ -8,7 +8,7 @@ import Profile from "./components/Profile";
 import User from "./components/User";
 import Comments from "./components/Comments";
 import Likes from "./components/Likes";
-import Account from "./components/Account";
+import Settings from "./components/Settings";
 import Post from "./components/Post";
 import EditAccount from "./components/EditAccount";
 
@@ -51,11 +51,11 @@ const Router = () => {
           element: <User />
         },
         {
-          path: "/user/account",
-          element: <Account />
+          path: "/user/settings",
+          element: <Settings />
         },
         {
-          path: "/user/account/edit",
+          path: "/user/settings/edit",
           element: <EditAccount />
         },
         {

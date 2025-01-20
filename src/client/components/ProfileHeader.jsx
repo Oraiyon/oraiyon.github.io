@@ -7,7 +7,7 @@ import DisplayProfilePicture from "./DisplayProfilePicture";
 const ProfileHeader = (props) => {
   const [alreadyFollowing, setAlreadyFollowing] = useState(false);
 
-  const editLinkRef = useRef(null);
+  const settingsLinkRef = useRef(null);
 
   useEffect(() => {
     const fetchFollow = async () => {
@@ -77,7 +77,7 @@ const ProfileHeader = (props) => {
           />
         </div>
         {props.mode === "user" ? (
-          <button onClick={() => editLinkRef.current.click()}>Account</button>
+          <button onClick={() => settingsLinkRef.current.click()}>Settings</button>
         ) : (
           ""
         )}
@@ -93,7 +93,7 @@ const ProfileHeader = (props) => {
       ) : (
         ""
       )}
-      <Link to={"/user/account"} ref={editLinkRef} />
+      <Link to={"/user/settings"} ref={settingsLinkRef} />
     </header>
   );
 };
