@@ -9,25 +9,49 @@ const EditProfile = () => {
   const profilePictureRef = useRef(null);
   const usernameRef = useRef(null);
 
-  const submitEdits = async () => {
+  const changeProfilePicture = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("id", user.id);
+      formData.append("file", profilePictureRef.current.files[0]);
+      const response = await fetch("/api/user/edit/picture", {
+        method: "PUT",
+        body: formData
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editUsername = async () => {
+    try {
+      const response = await fetch("/api/user/edit/username", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: user.id,
+          username: usernameRef.current.value
+        })
+      });
+      const data = await response.json();
+      setUser(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const submitEdits = async (e) => {
     try {
       e.preventDefault();
-      // Separate profile picture and username?
-      if (profilePictureRef.current.value && usernameRef.current.value) {
-        const responseUsername = await fetch("/api/user/edit/username", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            id: user.id,
-            username: usernameRef.current.value
-          })
-        });
-        const dataUsername = await responseUsername.json();
-        console.log(dataUsername);
-      } else if (profilePictureRef.current.value) {
-      } else if (usernameRef.current.value) {
+      if (profilePictureRef.current.value) {
+        changeProfilePicture();
+      }
+      if (usernameRef.current.value) {
+        editUsername();
       }
     } catch (error) {
       console.log(error);
@@ -39,7 +63,6 @@ const EditProfile = () => {
       <div className={styles.editProfile_container}>
         <BackHeader mode={"user"} user={user} />
         <form
-          action=""
           className={styles.editProfile_form}
           onSubmit={submitEdits}
           encType="multipart/form-data"
