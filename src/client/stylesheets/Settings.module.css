@@ -8,6 +8,25 @@
 .settings_links {
   display: flex;
   flex-direction: column;
-  padding: 0.25em;
   gap: 0.5em;
+}
+
+.settings_links > a {
+  padding: 0.25em;
+  border: 2px solid black;
+  border-left: 0;
+  border-right: 0;
+}
+
+.settings_links > a:first-of-type {
+  border-top: 0;
+}
+
+.settings_links > a > div {
+  display: flex;
+  align-items: center;
+}
+
+.settings_links > a > div > svg {
+  max-width: 50px;
 }
