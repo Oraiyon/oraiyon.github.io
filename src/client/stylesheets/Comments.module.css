@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  overflow-y: scroll;
 }
 
 .comments_container > div:first-of-type {
