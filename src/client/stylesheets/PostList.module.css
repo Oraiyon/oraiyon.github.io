@@ -1,7 +1,3 @@
-.post_container {
-  overflow-y: hidden;
-}
-
 .post_card {
   display: flex;
   flex-direction: column;
