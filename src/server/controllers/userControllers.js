@@ -99,9 +99,10 @@ export const login = [
 export const logout = (req, res, next) => {
   req.logout((err) => {
     if (err) {
+      console.log("ERROR");
       return next(err);
     }
-    res.redirect("/");
+    res.status(200).json(true);
   });
 };
 

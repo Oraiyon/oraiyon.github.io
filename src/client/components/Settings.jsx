@@ -7,6 +7,18 @@ import { mdiAccountEdit } from "@mdi/js";
 const Settings = () => {
   const [user, setUser, post, setPost] = useOutletContext();
 
+  const logout = async () => {
+    try {
+      const response = await fetch("/logout");
+      const data = await response.json();
+      if (data) {
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (user) {
     return (
       <div className={styles.settings_container}>
@@ -21,7 +33,7 @@ const Settings = () => {
             </Link>
           </div>
         </div>
-        <button>Log Out</button>
+        <button onClick={logout}>Log Out</button>
       </div>
     );
   }
