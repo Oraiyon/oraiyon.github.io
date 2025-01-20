@@ -22,12 +22,13 @@ const Likes = () => {
   }, []);
 
   return (
-    <div className={styles.likes_container}>
+    <div>
       {post ? <BackHeader post={post.text} mode={"likes"} /> : ""}
-      {post && post.Likes.length ? (
-        post.Likes.map((like) => (
-          <div key={like.id} className={styles.like_card}>
-            {/* {props.mode !== "profile" ? (
+      <div className={styles.likes_container}>
+        {post && post.Likes.length ? (
+          post.Likes.map((like) => (
+            <div key={like.id} className={styles.like_card}>
+              {/* {props.mode !== "profile" ? (
               <ToProfile searchedUser={like.likedBy} user={user} />
             ) : (
               <ToProfile
@@ -36,12 +37,13 @@ const Likes = () => {
                 post={post}
               />
             )} */}
-            <ToProfile searchedUser={like.likedBy} user={user} />
-          </div>
-        ))
-      ) : (
-        <p className={styles.no_likes}>No likes.</p>
-      )}
+              <ToProfile searchedUser={like.likedBy} user={user} />
+            </div>
+          ))
+        ) : (
+          <p className={styles.no_likes}>No likes.</p>
+        )}
+      </div>
     </div>
   );
 };
