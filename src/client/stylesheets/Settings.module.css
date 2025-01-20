@@ -3,5 +3,11 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+}
+
+.settings_links {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25em;
   gap: 0.5em;
 }

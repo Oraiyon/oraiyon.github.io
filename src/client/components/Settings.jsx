@@ -10,7 +10,9 @@ const Settings = () => {
       <div className={styles.settings_container}>
         <div>
           <BackHeader mode={"user"} user={user} />
-          <Link to={"/user/Settings/edit"}>Edit Account Information</Link>
+          <div className={styles.settings_links}>
+            <Link to={"/user/settings/edit"}>Edit Account Information</Link>
+          </div>
         </div>
         <button>Log Out</button>
       </div>
