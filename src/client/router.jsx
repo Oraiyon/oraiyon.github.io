@@ -12,6 +12,7 @@ import Settings from "./components/Settings";
 import Post from "./components/Post";
 import EditAccount from "./components/EditAccount";
 import ErrorPage from "./components/ErrorPage";
+import Inbox from "./components/Inbox";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -62,6 +63,10 @@ const Router = () => {
         {
           path: "/post",
           element: <Post />
+        },
+        {
+          path: "/inbox",
+          element: <Inbox />
         }
       ],
       errorElement: <ErrorPage />
