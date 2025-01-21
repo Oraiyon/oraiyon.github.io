@@ -48,7 +48,7 @@ const Post = () => {
   if (user) {
     return (
       <>
-        <div className={styles.post_container}>
+        <div className={styles.write_post_container}>
           <form action="" className={styles.post_form} onSubmit={writePost}>
             <label htmlFor="text">Write a post...</label>
             <textarea name="text" id="text" ref={formTextRef} required></textarea>

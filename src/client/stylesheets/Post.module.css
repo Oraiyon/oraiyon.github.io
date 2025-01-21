@@ -1,4 +1,4 @@
-.post_container {
+.write_post_container {
   height: 100%;
 }
 
@@ -6,6 +6,10 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.post_form > label {
+  padding: 0.25em;
 }
 
 .post_form > textarea {
