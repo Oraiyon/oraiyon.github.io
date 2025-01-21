@@ -3,3 +3,7 @@
   display: flex;
   align-items: center;
 }
+
+.user_card > svg {
+  height: 50px;
+}
