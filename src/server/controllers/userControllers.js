@@ -173,8 +173,16 @@ export const put_user_profile_username = [
         username: req.body.username
       },
       include: {
-        FollowedBy: true,
-        Following: true
+        FollowedBy: {
+          include: {
+            receiver: true
+          }
+        },
+        Following: {
+          include: {
+            sender: true
+          }
+        }
       }
     });
     res.status(200).json(user);
