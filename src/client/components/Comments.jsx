@@ -3,6 +3,7 @@ import styles from "../stylesheets/Comments.module.css";
 import ToProfile from "./ToProfile";
 import BackHeader from "./BackHeader";
 import { useEffect, useRef, useState } from "react";
+import DisplayDate from "./DisplayDate";
 
 const Comments = () => {
   const [user, setUser, post, setPost] = useOutletContext();
@@ -33,16 +34,6 @@ const Comments = () => {
     fetchComments();
     fetchPost();
   }, []);
-
-  const DisplayDate = (props) => {
-    const date = new Date(props.date);
-    const options = {
-      month: "short",
-      day: "numeric",
-      year: "numeric"
-    };
-    return <p className={styles.post_date}>{date.toLocaleDateString("en-us", options)}</p>;
-  };
 
   const sendComment = async (id) => {
     try {
