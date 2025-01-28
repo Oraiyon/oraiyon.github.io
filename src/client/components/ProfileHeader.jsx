@@ -71,10 +71,7 @@ const ProfileHeader = (props) => {
             <h1>{props.userProfile.username}</h1>
             <DisplayProfilePicture user={props.userProfile} />
           </div>
-          <Follows
-            followers={props.userProfile.FollowedBy}
-            following={props.userProfile.Following}
-          />
+          <Follows userProfile={props.userProfile} />
         </div>
         {props.mode === "user" ? (
           <button onClick={() => settingsLinkRef.current.click()}>Settings</button>
