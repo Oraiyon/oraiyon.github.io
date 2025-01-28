@@ -9,7 +9,11 @@ const ToProfile = (props) => {
         <Link to={`/${props.searchedUser.id}/profile`}>
           <div className={styles.user_card}>
             <DisplayProfilePicture user={props.searchedUser} />
-            <p>{props.searchedUser.username}</p>
+            <p>
+              {props.searchedUser.username
+                ? props.searchedUser.username
+                : props.searchedUser.sender.username}
+            </p>
           </div>
         </Link>
       ) : (
