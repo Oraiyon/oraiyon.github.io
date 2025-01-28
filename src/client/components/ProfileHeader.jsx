@@ -34,8 +34,8 @@ const ProfileHeader = (props) => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          sender: props.userProfile.id,
-          receiver: props.user.id
+          sender: props.user.id,
+          receiver: props.userProfile.id
         })
       });
       const data = await response.json();
@@ -50,7 +50,7 @@ const ProfileHeader = (props) => {
 
   const handleUnfollow = async () => {
     try {
-      const response = await fetch(`/api/delete/follow/${props.userProfile.id}/${props.user.id}`, {
+      const response = await fetch(`/api/delete/follow/${props.user.id}/${props.userProfile.id}`, {
         method: "DELETE"
       });
       const data = await response.json();
