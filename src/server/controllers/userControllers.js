@@ -64,10 +64,6 @@ export const login = [
     const user = await prisma.user.findFirst({
       where: {
         username: req.body.username
-      },
-      include: {
-        FollowedBy: true,
-        Following: true
       }
     });
     if (!user) {
@@ -88,7 +84,7 @@ export const login = [
         username: req.body.username
       },
       include: {
-        FollowedBy: {
+        Followers: {
           include: {
             receiver: true
           }
@@ -122,8 +118,16 @@ export const get_search_user = expressAsyncHandler(async (req, res, next) => {
       }
     },
     include: {
-      FollowedBy: true,
-      Following: true
+      Followers: {
+        include: {
+          receiver: true
+        }
+      },
+      Following: {
+        include: {
+          sender: true
+        }
+      }
     }
   });
   res.status(200).json(searchUserList);
@@ -135,7 +139,7 @@ export const get_user_profile = expressAsyncHandler(async (req, res, next) => {
       id: req.params.id
     },
     include: {
-      FollowedBy: true,
+      Followers: true,
       Following: true
     }
   });
@@ -173,7 +177,7 @@ export const put_user_profile_username = [
         username: req.body.username
       },
       include: {
-        FollowedBy: {
+        Followers: {
           include: {
             receiver: true
           }
@@ -204,7 +208,7 @@ export const put_user_profile_picture = [
         profilePicturerofilePicture: imageURL.secure_url
       },
       include: {
-        FollowedBy: true,
+        Followers: true,
         Following: true
       }
     });

@@ -17,7 +17,7 @@ model User {
   id             String    @id @default(uuid())
   username       String    @unique @db.VarChar(20)
   password       String
-  FollowedBy     Follow[]  @relation("FollowedBy")
+  Followers      Follow[]  @relation("Follower")
   Following      Follow[]  @relation("Following")
   // SentRequests     Request[] @relation("SentRequests")
   // ReceivedRequests Request[] @relation("ReceivedRequests")
@@ -33,7 +33,7 @@ model User {
 model Follow {
   id           String   @id @default(uuid())
   followedDate DateTime @default(now())
-  sender       User     @relation("FollowedBy", fields: [senderId], references: [id])
+  sender       User     @relation("Follower", fields: [senderId], references: [id])
   senderId     String
   receiver     User     @relation("Following", fields: [receiverId], references: [id])
   receiverId   String
