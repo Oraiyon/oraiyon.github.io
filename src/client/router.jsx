@@ -13,6 +13,7 @@ import Post from "./components/Post";
 import EditAccount from "./components/EditAccount";
 import ErrorPage from "./components/ErrorPage";
 import Inbox from "./components/Inbox";
+import Followers from "./components/Followers";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -67,6 +68,10 @@ const Router = () => {
         {
           path: "/inbox",
           element: <Inbox />
+        },
+        {
+          path: "/:id/followers",
+          element: <Followers />
         }
       ],
       errorElement: <ErrorPage />
