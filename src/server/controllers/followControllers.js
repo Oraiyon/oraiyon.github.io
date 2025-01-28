@@ -16,10 +16,10 @@ export const get_follow = expressAsyncHandler(async (req, res, next) => {
 export const get_followers = expressAsyncHandler(async (req, res, next) => {
   const followersList = await prisma.follow.findMany({
     where: {
-      receiverId: req.params.id
+      senderId: req.params.id
     },
     include: {
-      sender: true
+      receiver: true
     }
   });
   res.status(200).json(followersList);
@@ -28,10 +28,10 @@ export const get_followers = expressAsyncHandler(async (req, res, next) => {
 export const get_following = expressAsyncHandler(async (req, res, next) => {
   const followingList = await prisma.follow.findMany({
     where: {
-      senderId: req.params.id
+      receiverId: req.params.id
     },
     include: {
-      receiver: true
+      sender: true
     }
   });
   res.status(200).json(followingList);
