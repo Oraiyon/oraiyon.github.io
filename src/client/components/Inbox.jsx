@@ -11,7 +11,6 @@ const Inbox = () => {
   if (user) {
     return (
       <div className={styles.inbox_container}>
-        <h1>Inbox Page</h1>
         {user.Followers.map((follower) => (
           <div key={follower.id} className={styles.follower_notification}>
             <p>{follower.receiver.username}</p>
