@@ -1,7 +1,7 @@
 import styles from "../stylesheets/BackHeader.module.css";
 import Icon from "@mdi/react";
 import { mdiArrowLeft } from "@mdi/js";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 
 const BackHeader = (props) => {

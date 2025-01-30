@@ -30,7 +30,7 @@ const Followers = () => {
           <div>
             {userFollowers.map((follow) => (
               <div key={follow.id} className={styles.followers_card}>
-                <ToProfile searchedUser={follow} />
+                <ToProfile searchedUser={follow} user={null} />
               </div>
             ))}
           </div>

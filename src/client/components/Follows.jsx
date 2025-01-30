@@ -3,9 +3,7 @@ import styles from "../stylesheets/Follows.module.css";
 import { Link } from "react-router-dom";
 
 const Follows = (props) => {
-  useEffect(() => {
-    console.log(props.userProfile);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className={styles.follow_container}>
