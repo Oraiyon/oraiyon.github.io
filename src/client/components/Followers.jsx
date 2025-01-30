@@ -15,7 +15,6 @@ const Followers = () => {
         const response = await fetch(`/api/${window.location.pathname.split("/")[1]}/followers`);
         const data = await response.json();
         setUserFollowers(data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
