@@ -13,10 +13,12 @@ const Follows = (props) => {
           <p>{props.userProfile.Following.length}</p>
         </div>
       </Link>
-      <div className={styles.following_container}>
-        <p>Following</p>
-        <p>{props.userProfile.Followers.length}</p>
-      </div>
+      <Link to={`/${props.userProfile.id}/following`}>
+        <div className={styles.following_container}>
+          <p>Following</p>
+          <p>{props.userProfile.Followers.length}</p>
+        </div>
+      </Link>
     </div>
   );
 };
