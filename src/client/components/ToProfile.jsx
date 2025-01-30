@@ -4,9 +4,7 @@ import DisplayProfilePicture from "./DisplayProfilePicture";
 import { useEffect } from "react";
 
 const ToProfile = (props) => {
-  useEffect(() => {
-    // console.log(props.searchedUser);
-  }, []);
+  useEffect(() => {}, []);
 
   const LinkToUser = (props) => {
     return (
