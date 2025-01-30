@@ -4,13 +4,15 @@ import DisplayProfilePicture from "./DisplayProfilePicture";
 import { useEffect } from "react";
 
 const ToProfile = (props) => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // console.log(props.searchedUser);
+  }, []);
 
   return (
     <>
       {!props.user || props.user.username !== props.searchedUser.username ? (
         <Link
-          to={`/${props.searchedUser.id ? props.searchedUser.id : props.searchedUser.sender.id}/profile`}
+          to={`/${props.searchedUser.sender ? props.searchedUser.sender.id : props.searchedUser.id}/profile`}
         >
           <div className={styles.user_card}>
             <DisplayProfilePicture
