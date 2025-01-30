@@ -8,33 +8,60 @@ const ToProfile = (props) => {
     // console.log(props.searchedUser);
   }, []);
 
-  return (
-    <>
-      {!props.user || props.user.username !== props.searchedUser.username ? (
-        <Link
-          to={`/${props.searchedUser.sender ? props.searchedUser.sender.id : props.searchedUser.id}/profile`}
-        >
-          <div className={styles.user_card}>
-            <DisplayProfilePicture
-              user={props.searchedUser ? props.searchedUser : props.searchedUser.sender}
-            />
-            <p>
-              {props.searchedUser.username
-                ? props.searchedUser.username
-                : props.searchedUser.sender.username}
-            </p>
-          </div>
-        </Link>
-      ) : (
-        <Link to={`/user`}>
-          <div className={styles.user_card}>
-            <DisplayProfilePicture user={props.searchedUser} />
-            <p>{props.searchedUser.username}</p>
-          </div>
-        </Link>
-      )}
-    </>
-  );
+  const LinkToUser = (props) => {
+    return (
+      <Link to={`/user`}>
+        <div className={styles.user_card}>
+          <DisplayProfilePicture user={props.searchedUser} />
+          <p>{props.searchedUser.username}</p>
+        </div>
+      </Link>
+    );
+  };
+
+  if (props.searchedUser.sender || props.searchedUser.receiver) {
+    return (
+      <>
+        {!props.user || props.user.username !== props.searchedUser.username ? (
+          <Link
+            to={`/${props.searchedUser.sender ? props.searchedUser.sender.id : props.searchedUser.receiver.id}/profile`}
+          >
+            <div className={styles.user_card}>
+              <DisplayProfilePicture
+                user={
+                  props.searchedUser.sender
+                    ? props.searchedUser.sender
+                    : props.searchedUser.receiver
+                }
+              />
+              <p>
+                {props.searchedUser.sender
+                  ? props.searchedUser.sender.username
+                  : props.searchedUser.receiver.username}
+              </p>
+            </div>
+          </Link>
+        ) : (
+          <LinkToUser searchedUser={props.searchedUser} />
+        )}
+      </>
+    );
+  } else {
+    return (
+      <>
+        {!props.user || props.user.username !== props.searchedUser.username ? (
+          <Link to={`/${props.searchedUser.id}/profile`}>
+            <div className={styles.user_card}>
+              <DisplayProfilePicture user={props.searchedUser} />
+              <p>{props.searchedUser.username}</p>
+            </div>
+          </Link>
+        ) : (
+          <LinkToUser searchedUser={props.searchedUser} />
+        )}
+      </>
+    );
+  }
 };
 
 export default ToProfile;
