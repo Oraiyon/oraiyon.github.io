@@ -1,0 +1,14 @@
+.following_container {
+  height: 100%;
+}
+
+.following_container > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.following_card {
+  padding: 0.25em;
+}
