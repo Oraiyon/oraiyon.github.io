@@ -21,6 +21,12 @@ const BackHeader = (props) => {
     return (
       <div className={styles.backHeader_container_profile}>
         <Icon path={mdiArrowLeft} onClick={() => navigate(-1)} />
+        <p>
+          {window.location.pathname.split("/")[2] === "followers" ||
+          window.location.pathname.split("/")[2] === "following"
+            ? "Profile"
+            : ""}
+        </p>
       </div>
     );
   } else if (props.mode === "user") {
