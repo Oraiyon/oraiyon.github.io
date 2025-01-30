@@ -6,14 +6,16 @@ import DisplayDate from "./DisplayDate";
 const Inbox = () => {
   const [user, setUser, post, setPost] = useOutletContext();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    // console.log(user.Following);
+  }, []);
 
   if (user) {
     return (
       <div className={styles.inbox_container}>
-        {user.Followers.map((follower) => (
+        {user.Following.map((follower) => (
           <div key={follower.id} className={styles.follower_notification}>
-            <p>{follower.receiver.username}</p>
+            <p>{follower.sender.username}</p>
             <DisplayDate date={follower.followedDate} />
           </div>
         ))}
