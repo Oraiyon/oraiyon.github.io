@@ -141,12 +141,14 @@ export const get_user_profile = expressAsyncHandler(async (req, res, next) => {
     include: {
       Followers: {
         include: {
+          sender: true,
           receiver: true
         }
       },
       Following: {
         include: {
-          sender: true
+          sender: true,
+          receiver: true
         }
       }
     }
