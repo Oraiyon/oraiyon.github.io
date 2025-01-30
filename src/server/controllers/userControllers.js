@@ -139,8 +139,16 @@ export const get_user_profile = expressAsyncHandler(async (req, res, next) => {
       id: req.params.id
     },
     include: {
-      Followers: true,
-      Following: true
+      Followers: {
+        include: {
+          receiver: true
+        }
+      },
+      Following: {
+        include: {
+          sender: true
+        }
+      }
     }
   });
   res.status(200).json(user);
