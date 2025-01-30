@@ -1,14 +1,21 @@
 import { Link } from "react-router-dom";
 import styles from "../stylesheets/ToProfile.module.css";
 import DisplayProfilePicture from "./DisplayProfilePicture";
+import { useEffect } from "react";
 
 const ToProfile = (props) => {
+  useEffect(() => {}, []);
+
   return (
     <>
       {!props.user || props.user.username !== props.searchedUser.username ? (
-        <Link to={`/${props.searchedUser.id}/profile`}>
+        <Link
+          to={`/${props.searchedUser.id ? props.searchedUser.id : props.searchedUser.sender.id}/profile`}
+        >
           <div className={styles.user_card}>
-            <DisplayProfilePicture user={props.searchedUser} />
+            <DisplayProfilePicture
+              user={props.searchedUser ? props.searchedUser : props.searchedUser.sender}
+            />
             <p>
               {props.searchedUser.username
                 ? props.searchedUser.username
