@@ -15,6 +15,7 @@ const Followers = () => {
         const response = await fetch(`/api/${window.location.pathname.split("/")[1]}/followers`);
         const data = await response.json();
         setUserFollowers(data);
+        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -22,7 +23,7 @@ const Followers = () => {
     fetchUser();
   }, []);
 
-  if (userFollowers) {
+  if (userFollowers.length) {
     return (
       <>
         <div className={styles.followers_container}>
@@ -34,6 +35,15 @@ const Followers = () => {
               </div>
             ))}
           </div>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className={styles.followers_container}>
+          <BackHeader mode={"profile"} />
+          <p>No Followers.</p>
         </div>
       </>
     );
