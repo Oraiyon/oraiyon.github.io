@@ -9,6 +9,10 @@
   height: 100%;
 }
 
+.followers_list {
+  overflow-y: scroll;
+}
+
 .followers_card {
   padding: 0.25em;
 }

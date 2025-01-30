@@ -27,7 +27,7 @@ const Following = () => {
       <>
         <div className={styles.following_container}>
           <BackHeader mode={"profile"} />
-          <div>
+          <div className={styles.following_list}>
             {userFollowing.map((follow) => (
               <div key={follow.id} className={styles.following_card}>
                 <ToProfile searchedUser={follow} user={null} />
@@ -42,7 +42,7 @@ const Following = () => {
       <>
         <div className={styles.following_container}>
           <BackHeader mode={"profile"} />
-          <p>No Following.</p>
+          <p>No Followed Accounts.</p>
         </div>
       </>
     );

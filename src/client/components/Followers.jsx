@@ -27,7 +27,7 @@ const Followers = () => {
       <>
         <div className={styles.followers_container}>
           <BackHeader mode={"profile"} />
-          <div>
+          <div className={styles.followers_list}>
             {userFollowers.map((follow) => (
               <div key={follow.id} className={styles.followers_card}>
                 <ToProfile searchedUser={follow} user={null} />
