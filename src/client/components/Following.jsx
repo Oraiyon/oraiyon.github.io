@@ -42,11 +42,32 @@ const Following = () => {
       }
     };
 
+    const handleFollow = async () => {
+      try {
+        const response = await fetch("/api/send/follow", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            sender: props.user.id,
+            receiver: props.userProfile.receiverId
+          })
+        });
+        const data = await response.json();
+        if (data) {
+          setFollowing(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     if (props.user) {
       if (following) {
         return <button onClick={handleUnfollow}>Unfollow</button>;
       } else {
-        return <button>Follow</button>;
+        return <button onClick={handleFollow}>Follow</button>;
       }
     }
   };
