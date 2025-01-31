@@ -42,6 +42,7 @@ const ProfileHeader = (props) => {
       if (data) {
         setAlreadyFollowing(true);
         props.setUpdateUserInfo((u) => !u);
+        props.setUser(data);
       }
     } catch (error) {
       console.log(error);
@@ -57,6 +58,7 @@ const ProfileHeader = (props) => {
       if (data) {
         setAlreadyFollowing(false);
         props.setUpdateUserInfo((u) => !u);
+        props.setUser(data);
       }
     } catch (error) {
       console.log(error);
@@ -71,7 +73,7 @@ const ProfileHeader = (props) => {
             <h1>{props.userProfile.username}</h1>
             <DisplayProfilePicture user={props.userProfile} />
           </div>
-          <Follows userProfile={props.userProfile} />
+          <Follows user={props.user} userProfile={props.userProfile} />
         </div>
         {props.mode === "user" ? (
           <button onClick={() => settingsLinkRef.current.click()}>Settings</button>

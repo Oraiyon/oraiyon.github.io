@@ -48,6 +48,7 @@ const Profile = () => {
           <BackHeader mode={"profile"} />
           <ProfileHeader
             user={user}
+            setUser={setUser}
             userProfile={userProfile}
             setUpdateUserInfo={setUpdateUserInfo}
           />

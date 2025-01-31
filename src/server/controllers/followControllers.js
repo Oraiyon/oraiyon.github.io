@@ -48,13 +48,32 @@ const post_follow = expressAsyncHandler(async (req, res, next) => {
     res.status(200).json(false);
     return;
   }
-  const follow = await prisma.follow.create({
+  await prisma.follow.create({
     data: {
       senderId: req.body.sender,
       receiverId: req.body.receiver
     }
   });
-  res.status(200).json(follow);
+  const user = await prisma.user.findFirst({
+    where: {
+      id: req.body.sender
+    },
+    include: {
+      Followers: {
+        include: {
+          sender: true,
+          receiver: true
+        }
+      },
+      Following: {
+        include: {
+          sender: true,
+          receiver: true
+        }
+      }
+    }
+  });
+  res.status(200).json(user);
 });
 
 export const delete_follow = expressAsyncHandler(async (req, res, next) => {
@@ -70,12 +89,26 @@ export const delete_follow = expressAsyncHandler(async (req, res, next) => {
         id: alreadyFollowing.id
       }
     });
-    const followList = await prisma.follow.findMany({
+    const user = await prisma.user.findFirst({
       where: {
-        senderId: req.params.sender
+        id: req.params.sender
+      },
+      include: {
+        Followers: {
+          include: {
+            sender: true,
+            receiver: true
+          }
+        },
+        Following: {
+          include: {
+            sender: true,
+            receiver: true
+          }
+        }
       }
     });
-    res.status(200).json(followList);
+    res.status(200).json(user);
   } else {
     res.status(200).json(false);
   }
