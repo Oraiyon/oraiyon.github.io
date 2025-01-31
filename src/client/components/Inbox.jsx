@@ -9,7 +9,7 @@ const Inbox = () => {
 
   useEffect(() => {}, []);
 
-  if (user) {
+  if (user && user.Following.length) {
     return (
       <div className={styles.inbox_container}>
         {user.Following.map((follower) => (

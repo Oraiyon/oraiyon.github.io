@@ -42,7 +42,7 @@ const Followers = () => {
       <>
         <div className={styles.followers_container}>
           <BackHeader mode={"profile"} />
-          <p>No Followers.</p>
+          <p>No Followers</p>
         </div>
       </>
     );
