@@ -9,15 +9,17 @@ const Inbox = () => {
 
   useEffect(() => {}, []);
 
-  if (user && user.Following.length) {
+  if (user) {
     return (
       <div className={styles.inbox_container}>
-        {user.Following.map((follower) => (
-          <div key={follower.id} className={styles.follower_notification}>
-            <ToProfile searchedUser={follower.sender} user={null} />
-            <DisplayDate date={follower.followedDate} />
-          </div>
-        ))}
+        {user.Following.length
+          ? user.Following.map((follower) => (
+              <div key={follower.id} className={styles.follower_notification}>
+                <ToProfile searchedUser={follower.sender} user={null} />
+                <DisplayDate date={follower.followedDate} />
+              </div>
+            ))
+          : ""}
       </div>
     );
   }
