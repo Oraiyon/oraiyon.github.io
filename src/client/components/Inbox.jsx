@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import styles from "../stylesheets/Inbox.module.css";
 import { useOutletContext } from "react-router-dom";
-import DisplayDate from "./DisplayDate";
 import ToProfile from "./ToProfile";
 
 const Inbox = () => {
@@ -16,7 +15,7 @@ const Inbox = () => {
           ? user.Following.map((follower) => (
               <div key={follower.id} className={styles.follower_notification}>
                 <ToProfile searchedUser={follower.sender} user={null} />
-                <DisplayDate date={follower.followedDate} />
+                <p>Followed You</p>
               </div>
             ))
           : ""}
