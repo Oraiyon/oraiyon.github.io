@@ -43,7 +43,7 @@ const Comments = () => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          author: props.user.id,
+          author: user.id,
           text: commentInputRef.current.value,
           post: id
         })
