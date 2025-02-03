@@ -3,7 +3,7 @@ import styles from "../stylesheets/PostList.module.css";
 import ToProfile from "./ToProfile";
 import { Link } from "react-router-dom";
 import Icon from "@mdi/react";
-import { mdiCardsHeartOutline, mdiComment } from "@mdi/js";
+import { mdiCardsHeartOutline, mdiComment, mdiHeart } from "@mdi/js";
 
 const PostList = (props) => {
   const [postList, setPostList] = useState([]);
@@ -66,6 +66,28 @@ const PostList = (props) => {
     }
   };
 
+  const HandleLikedPost = (props) => {
+    const [liked, setLiked] = useState(false);
+
+    useEffect(() => {
+      for (const like of props.post.Likes) {
+        if (like.likedById === props.user.id) {
+          setLiked(true);
+          return;
+        }
+      }
+    }, []);
+
+    return (
+      <Icon
+        path={liked ? mdiHeart : mdiCardsHeartOutline}
+        onClick={() => likePost(props.post.id)}
+        className={styles.like_icon}
+      ></Icon>
+    );
+  };
+
+  // Change like icon if post is liked
   return (
     <>
       {postList && postList.length ? (
@@ -81,11 +103,7 @@ const PostList = (props) => {
                 <p onClick={() => likePost(post.id)}>{post.text}</p>
                 <div className={styles.post_clicks}>
                   <div className={styles.like_section}>
-                    <Icon
-                      path={mdiCardsHeartOutline}
-                      onClick={() => likePost(post.id)}
-                      className={styles.like_icon}
-                    ></Icon>
+                    <HandleLikedPost user={props.user} post={post} />
                     <Link to={`/${post.id}/likes`}>
                       <p>{post.Likes.length}</p>
                     </Link>
