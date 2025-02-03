@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import styles from "../stylesheets/PostList.module.css";
 import ToProfile from "./ToProfile";
 import { Link } from "react-router-dom";
+import Icon from "@mdi/react";
+import { mdiCardsHeartOutline, mdiComment } from "@mdi/js";
 
 const PostList = (props) => {
   const [postList, setPostList] = useState([]);
@@ -77,12 +79,24 @@ const PostList = (props) => {
                   <ToProfile searchedUser={post.author} />
                 )}
                 <p onClick={() => likePost(post.id)}>{post.text}</p>
-                <Link to={`/${post.id}/likes`}>
-                  {post.Likes.length} {post.Likes.length !== 1 ? "Likes" : "Like"}
-                </Link>
-                <Link to={`/${post.id}/comments`}>
-                  View {post._count.Comments} {post._count.Comments !== 1 ? "Comments" : "Comment"}
-                </Link>
+                <div className={styles.post_clicks}>
+                  <div className={styles.like_section}>
+                    <Icon
+                      path={mdiCardsHeartOutline}
+                      onClick={() => likePost(post.id)}
+                      className={styles.like_icon}
+                    ></Icon>
+                    <Link to={`/${post.id}/likes`}>
+                      <p>{post.Likes.length}</p>
+                    </Link>
+                  </div>
+                  <div className={styles.comments_section}>
+                    <Link to={`/${post.id}/comments`}>
+                      <Icon path={mdiComment} className={styles.post_icon}></Icon>
+                      <p>{post._count.Comments}</p>
+                    </Link>
+                  </div>
+                </div>
                 <DisplayDate date={post.postDate} />
               </div>
             ) : (

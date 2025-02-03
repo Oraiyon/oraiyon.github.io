@@ -22,12 +22,44 @@
   cursor: default;
 }
 
-#post_card_profile {
-  padding: 0;
+.post_card > a {
+  display: flex;
+  align-items: center;
 }
 
-#post_card_profile + p:first-of-type {
-  border-top: 0;
+.post_clicks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.like_section,
+.comments_section {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.like_section > a,
+.comments_section > a {
+  flex: 1;
+  height: 100%;
+}
+
+.comments_section > a {
+  display: flex;
+  align-items: center;
+}
+
+.like_icon,
+.post_icon {
+  height: 50px;
+  cursor: pointer;
+}
+
+#post_card_profile {
+  padding: 0;
 }
 
 .post_date {
