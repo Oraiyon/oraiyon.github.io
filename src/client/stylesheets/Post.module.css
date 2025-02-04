@@ -9,6 +9,14 @@
 }
 
 .image_preview {
-  border: 1px solid red;
   flex: 1;
+}
+
+.image_preview > img {
+  width: 100%;
+  max-height: 100%;
+}
+
+.post_caption {
+  padding: 0.5em;
 }

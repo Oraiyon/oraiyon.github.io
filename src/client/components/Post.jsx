@@ -1,6 +1,6 @@
 import { useOutletContext } from "react-router-dom";
 import styles from "../stylesheets/Post.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
 
 const Post = () => {
@@ -8,6 +8,7 @@ const Post = () => {
 
   const imageRef = useRef(null);
   const textRef = useRef(null);
+  const previewImageRef = useRef(null);
 
   useEffect(() => {
     if (!user) {
@@ -39,21 +40,37 @@ const Post = () => {
     }
   };
 
+  const handlePreview = (e) => {
+    const output = previewImageRef.current;
+    if (!e.target.files[0]) {
+      output.src = "";
+    } else {
+      if (e.target.files[0].type === "image/jpeg") {
+        if (imageRef.current.value !== "") {
+          output.src = URL.createObjectURL(e.target.files[0]);
+        }
+      }
+    }
+    output.onload = () => URL.revokeObjectURL(output.src);
+  };
+
   if (user) {
     return (
       <>
         <div className={styles.write_post_container}>
           <form action="" className={styles.post_form} onSubmit={writePost}>
-            <label htmlFor="image">Post an image</label>
-            <input type="file" name="file" id="image" ref={imageRef} required />
-            <div className={styles.image_preview}></div>
+            <label htmlFor="image">Create A Post</label>
+            <input type="file" name="file" id="image" ref={imageRef} onChange={handlePreview} />
+            <div className={styles.image_preview}>
+              <img src="" alt="" ref={previewImageRef} />
+            </div>
             <label htmlFor="text"></label>
             <input
               type="text"
               name="text"
               id="text"
               ref={textRef}
-              required
+              className={styles.post_caption}
               placeholder="Write a caption..."
             ></input>
             <button>Post</button>
