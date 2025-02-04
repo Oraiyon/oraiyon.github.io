@@ -19,7 +19,6 @@ const EditAccount = () => {
         body: formData
       });
       const data = await response.json();
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
