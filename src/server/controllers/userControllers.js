@@ -207,7 +207,7 @@ export const put_user_profile_picture = [
   upload.single("file"),
   expressAsyncHandler(async (req, res, next) => {
     const imageURL = await cloudinary.uploader.upload(req.file.path, {
-      folder: "odinbook"
+      folder: "odinbook_profiles"
     });
     await unlink(req.file.path);
     const user = await prisma.user.update({
