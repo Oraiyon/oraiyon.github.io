@@ -1,15 +1,13 @@
-import { Link, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import styles from "../stylesheets/Post.module.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
 
 const Post = () => {
   const [user, setUser, post, setPost] = useOutletContext();
 
-  const [toFeed, setToFeed] = useState(false);
-
-  const formTextRef = useRef(null);
-  const toFeedRef = useRef(null);
+  const imageRef = useRef(null);
+  const textRef = useRef(null);
 
   useEffect(() => {
     if (!user) {
@@ -17,28 +15,24 @@ const Post = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (toFeed) {
-      toFeedRef.current.click();
-    }
-  }, [toFeed]);
-
   const writePost = async (e) => {
     try {
       e.preventDefault();
-      const response = await fetch("/api/create/post", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          author: user.id,
-          text: formTextRef.current.value
-        })
-      });
-      const data = await response.json();
-      if (data) {
-        setToFeed(true);
+      if (imageRef.current.value && textRef.current.value) {
+        const formData = new FormData();
+        formData.append("author", user.id);
+        formData.append("file", imageRef.current.files[0]);
+        formData.append("text", textRef.current.value);
+        const response = await fetch("/api/create/post", {
+          method: "POST",
+          body: formData
+        });
+        const data = await response.json();
+        console.log(data);
+        if (data) {
+          imageRef.current.value = "";
+          textRef.current.value = "";
+        }
       }
     } catch (error) {
       console.log(error);
@@ -50,12 +44,21 @@ const Post = () => {
       <>
         <div className={styles.write_post_container}>
           <form action="" className={styles.post_form} onSubmit={writePost}>
-            <label htmlFor="text">Write a post...</label>
-            <textarea name="text" id="text" ref={formTextRef} required></textarea>
+            <label htmlFor="image">Post an image</label>
+            <input type="file" name="file" id="image" ref={imageRef} required />
+            <div className={styles.image_preview}></div>
+            <label htmlFor="text"></label>
+            <input
+              type="text"
+              name="text"
+              id="text"
+              ref={textRef}
+              required
+              placeholder="Write a caption..."
+            ></input>
             <button>Post</button>
           </form>
         </div>
-        <Link to={"/feed"} ref={toFeedRef} />
       </>
     );
   }

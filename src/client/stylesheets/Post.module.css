@@ -8,10 +8,7 @@
   height: 100%;
 }
 
-.post_form > label {
-  padding: 0.25em;
-}
-
-.post_form > textarea {
-  height: 100%;
+.image_preview {
+  border: 1px solid red;
+  flex: 1;
 }
