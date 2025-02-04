@@ -1,38 +1,60 @@
 import { PrismaClient } from "@prisma/client";
 import expressAsyncHandler from "express-async-handler";
+import multer from "multer";
+import { unlink } from "node:fs/promises";
+import { v2 as cloudinary } from "cloudinary";
 
 const prisma = new PrismaClient();
 
-const post_post = expressAsyncHandler(async (req, res, next) => {
-  await prisma.post.create({
-    data: {
-      authorId: req.body.author,
-      text: req.body.text
-    }
-  });
-  const postList = await prisma.post.findMany({
-    where: {
-      authorId: req.body.author
-    },
-    orderBy: {
-      postDate: "desc"
-    },
-    include: {
-      Likes: {
-        include: {
-          likedBy: true
-        }
-      },
-      _count: {
-        select: {
-          Comments: true
-        }
-      },
-      author: true
-    }
-  });
-  res.status(200).json(postList);
+// dest starts from root directory
+const upload = multer({ dest: "./src/server/public/uploads" });
+
+cloudinary.config({
+  // Put in Railway
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
+
+const post_post = [
+  upload.single("file"),
+  expressAsyncHandler(async (req, res, next) => {
+    const imageURL = await cloudinary.uploader.upload(req.file.path, {
+      folder: "odinbook_posts"
+    });
+    await unlink(req.file.path);
+    await prisma.post.create({
+      data: {
+        authorId: req.body.author,
+        image: imageURL.secure_url,
+        text: req.body.text
+      }
+    });
+    const postList = await prisma.post.findMany({
+      where: {
+        authorId: req.body.author
+      },
+      orderBy: {
+        postDate: "desc"
+      },
+      include: {
+        Likes: {
+          include: {
+            likedBy: true
+          }
+        },
+        _count: {
+          select: {
+            Comments: true
+          }
+        },
+        author: true
+      }
+    });
+    console.log(postList);
+    res.status(200).json(postList);
+  })
+];
 
 export const get_posts = expressAsyncHandler(async (req, res, next) => {
   const postList = await prisma.post.findMany({
