@@ -70,10 +70,12 @@ const PostList = (props) => {
     const [liked, setLiked] = useState(false);
 
     useEffect(() => {
-      for (const like of props.post.Likes) {
-        if (like.likedById === props.user.id) {
-          setLiked(true);
-          return;
+      if (props.user) {
+        for (const like of props.post.Likes) {
+          if (like.likedById === props.user.id) {
+            setLiked(true);
+            return;
+          }
         }
       }
     }, []);
@@ -87,7 +89,6 @@ const PostList = (props) => {
     );
   };
 
-  // Change like icon if post is liked
   return (
     <>
       {postList && postList.length ? (
