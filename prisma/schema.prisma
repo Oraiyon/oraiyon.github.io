@@ -61,6 +61,7 @@ model Post {
   Comments Comment[]
   Likes    Likes[]
   Reply    Reply[]
+  image    String?
 
   @@map("posts")
 }
