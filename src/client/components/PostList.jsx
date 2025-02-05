@@ -101,22 +101,29 @@ const PostList = (props) => {
                 ) : (
                   <ToProfile searchedUser={post.author} />
                 )}
-                <p onClick={() => likePost(post.id)}>{post.text}</p>
-                <div className={styles.post_clicks}>
-                  <div className={styles.like_section}>
-                    <HandleLikedPost user={props.user} post={post} />
-                    <Link to={`/${post.id}/likes`}>
-                      <p>{post.Likes.length}</p>
-                    </Link>
+                <img
+                  src={post.image}
+                  className={styles.post_image}
+                  onClick={() => likePost(post.id)}
+                />
+                <p>{post.text}</p>
+                <div className={styles.post_info}>
+                  <div className={styles.post_clicks}>
+                    <div className={styles.like_section}>
+                      <HandleLikedPost user={props.user} post={post} />
+                      <Link to={`/${post.id}/likes`}>
+                        <p>{post.Likes.length}</p>
+                      </Link>
+                    </div>
+                    <div className={styles.comments_section}>
+                      <Link to={`/${post.id}/comments`}>
+                        <Icon path={mdiComment} className={styles.post_icon}></Icon>
+                        <p>{post._count.Comments}</p>
+                      </Link>
+                    </div>
                   </div>
-                  <div className={styles.comments_section}>
-                    <Link to={`/${post.id}/comments`}>
-                      <Icon path={mdiComment} className={styles.post_icon}></Icon>
-                      <p>{post._count.Comments}</p>
-                    </Link>
-                  </div>
+                  <DisplayDate date={post.postDate} />
                 </div>
-                <DisplayDate date={post.postDate} />
               </div>
             ) : (
               ""

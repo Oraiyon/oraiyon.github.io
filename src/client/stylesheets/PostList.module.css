@@ -13,8 +13,6 @@
 }
 
 .post_card > p:first-of-type {
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
   width: 100%;
 }
 
@@ -25,6 +23,19 @@
 .post_card > a {
   display: flex;
   align-items: center;
+}
+
+.post_image {
+  width: 100%;
+  height: 100%;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 0;
+}
+
+.post_info {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 .post_clicks {
@@ -56,14 +67,6 @@
 .post_icon {
   height: 25px;
   cursor: pointer;
-}
-
-#post_card_profile {
-  padding: 0;
-}
-
-.post_date {
-  border-bottom: 2px solid black;
 }
 
 .no_posts {
