@@ -29,10 +29,10 @@ const Post = () => {
           body: formData
         });
         const data = await response.json();
-        console.log(data);
         if (data) {
           imageRef.current.value = "";
           textRef.current.value = "";
+          previewImageRef.current.src = "";
         }
       }
     } catch (error) {

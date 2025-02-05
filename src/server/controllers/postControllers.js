@@ -23,36 +23,35 @@ const post_post = [
       folder: "odinbook_posts"
     });
     await unlink(req.file.path);
-    await prisma.post.create({
+    const post = await prisma.post.create({
       data: {
         authorId: req.body.author,
         image: imageURL.secure_url,
         text: req.body.text
       }
     });
-    const postList = await prisma.post.findMany({
-      where: {
-        authorId: req.body.author
-      },
-      orderBy: {
-        postDate: "desc"
-      },
-      include: {
-        Likes: {
-          include: {
-            likedBy: true
-          }
-        },
-        _count: {
-          select: {
-            Comments: true
-          }
-        },
-        author: true
-      }
-    });
-    console.log(postList);
-    res.status(200).json(postList);
+    // const postList = await prisma.post.findMany({
+    //   where: {
+    //     authorId: req.body.author
+    //   },
+    //   orderBy: {
+    //     postDate: "desc"
+    //   },
+    //   include: {
+    //     Likes: {
+    //       include: {
+    //         likedBy: true
+    //       }
+    //     },
+    //     _count: {
+    //       select: {
+    //         Comments: true
+    //       }
+    //     },
+    //     author: true
+    //   }
+    // });
+    res.status(200).json(post);
   })
 ];
 
