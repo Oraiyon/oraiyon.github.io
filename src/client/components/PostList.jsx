@@ -144,7 +144,9 @@ const PostList = (props) => {
             ) : (
               <div className={styles.post_edit}>
                 <Icon path={mdiDotsHorizontal} onClick={() => setDisplayPostModal(null)} />
-                <button>Edit Post</button>
+                <Link to={`/post/edit/${post.id}`}>
+                  <button>Edit Post</button>
+                </Link>
                 <button onClick={() => deletePost(post.id)}>Delete Post</button>
               </div>
             )}

@@ -88,3 +88,7 @@
   height: 50px;
   align-self: flex-end;
 }
+
+.post_edit > a > button {
+  width: 100%;
+}

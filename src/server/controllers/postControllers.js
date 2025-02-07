@@ -145,11 +145,6 @@ export const delete_post = expressAsyncHandler(async (req, res, next) => {
       postId: req.params.postId
     }
   });
-  // await prisma.reply.deleteMany({
-  //   where: {
-  //     postId: req.params.postId
-  //   }
-  // });
   await prisma.comment.deleteMany({
     where: {
       postId: req.params.postId
@@ -180,6 +175,18 @@ export const delete_post = expressAsyncHandler(async (req, res, next) => {
     }
   });
   res.status(200).json(postList);
+});
+
+export const put_update_post = expressAsyncHandler(async (req, res, next) => {
+  const updatedPost = await prisma.post.update({
+    where: {
+      id: req.body.id
+    },
+    data: {
+      text: req.body.text
+    }
+  });
+  res.status(200).json(updatedPost);
 });
 
 export default post_post;
