@@ -7,6 +7,7 @@ import { mdiCardsHeartOutline, mdiComment, mdiHeart } from "@mdi/js";
 
 const PostList = (props) => {
   const [postList, setPostList] = useState([]);
+  const [displayPostModal, setDisplayPostModal] = useState(null);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -94,14 +95,13 @@ const PostList = (props) => {
       {postList && postList.length ? (
         postList.map((post) => (
           <div key={post.id} className={styles.post_container}>
-            {!props.displayLikes && !props.displayComments ? (
+            {displayPostModal !== post.authorId ? (
               <div className={styles.post_card}>
-                {/* {props.mode !== "profile" ? (
-                  <ToProfile searchedUser={post.author} user={props.user} />
-                ) : (
-                  <ToProfile searchedUser={post.author} />
-                )} */}
-                <ToProfile searchedUser={post.author} user={props.user} />
+                <ToProfile
+                  searchedUser={post.author}
+                  user={props.user}
+                  setDisplayPostModal={setDisplayPostModal}
+                />
                 <img
                   src={post.image}
                   className={styles.post_image}
@@ -127,7 +127,12 @@ const PostList = (props) => {
                 </div>
               </div>
             ) : (
-              ""
+              <div className={styles.post_edit}>
+                <p>Edit Post</p>
+                <button onClick={() => setDisplayPostModal(null)}>Close</button>
+                <button>Edit Post</button>
+                <button>Delete Post</button>
+              </div>
             )}
           </div>
         ))

@@ -2,18 +2,27 @@ import { Link } from "react-router-dom";
 import styles from "../stylesheets/ToProfile.module.css";
 import DisplayProfilePicture from "./DisplayProfilePicture";
 import { useEffect } from "react";
+import Icon from "@mdi/react";
+import { mdiDotsHorizontal } from "@mdi/js";
 
 const ToProfile = (props) => {
   useEffect(() => {}, []);
 
-  const LinkToUser = (props) => {
+  const DisplayPostHeader = () => {
+    const handlePostSettings = () => {
+      props.setDisplayPostModal(props.searchedUser.id);
+    };
+
     return (
-      <Link to={`/user`}>
-        <div className={styles.user_card}>
-          <DisplayProfilePicture user={props.searchedUser} />
-          <p>{props.searchedUser.username}</p>
-        </div>
-      </Link>
+      <div className={styles.post_header}>
+        <Link to={`/user`}>
+          <div className={styles.user_card}>
+            <DisplayProfilePicture user={props.searchedUser} />
+            <p>{props.searchedUser.username}</p>
+          </div>
+        </Link>
+        <Icon path={mdiDotsHorizontal} onClick={handlePostSettings}></Icon>
+      </div>
     );
   };
 
@@ -40,7 +49,7 @@ const ToProfile = (props) => {
             </div>
           </Link>
         ) : (
-          <LinkToUser searchedUser={props.searchedUser} />
+          <DisplayPostHeader />
         )}
       </>
     );
@@ -55,7 +64,7 @@ const ToProfile = (props) => {
             </div>
           </Link>
         ) : (
-          <LinkToUser searchedUser={props.searchedUser} />
+          <DisplayPostHeader />
         )}
       </>
     );

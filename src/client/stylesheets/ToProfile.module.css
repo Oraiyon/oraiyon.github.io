@@ -7,3 +7,14 @@
 .user_card > svg {
   height: 50px;
 }
+
+.post_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post_header > svg {
+  width: 50px;
+  cursor: pointer;
+}
