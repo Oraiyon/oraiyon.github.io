@@ -162,9 +162,6 @@ export const delete_post = expressAsyncHandler(async (req, res, next) => {
     }
   });
   const postList = await prisma.post.findMany({
-    where: {
-      authorId: req.params.id
-    },
     orderBy: {
       postDate: "desc"
     },

@@ -3,7 +3,7 @@ import styles from "../stylesheets/PostList.module.css";
 import ToProfile from "./ToProfile";
 import { Link } from "react-router-dom";
 import Icon from "@mdi/react";
-import { mdiCardsHeartOutline, mdiComment, mdiHeart } from "@mdi/js";
+import { mdiCardsHeartOutline, mdiComment, mdiHeart, mdiDotsHorizontal } from "@mdi/js";
 
 const PostList = (props) => {
   const [postList, setPostList] = useState([]);
@@ -90,6 +90,21 @@ const PostList = (props) => {
     );
   };
 
+  const deletePost = async (id) => {
+    try {
+      const response = await fetch(`/api/${props.user.id}/delete/${id}`, {
+        method: "DELETE"
+      });
+      const data = await response.json();
+      if (data) {
+        setDisplayPostModal(null);
+        setPostList(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       {postList && postList.length ? (
@@ -128,10 +143,9 @@ const PostList = (props) => {
               </div>
             ) : (
               <div className={styles.post_edit}>
-                <p>Edit Post</p>
-                <button onClick={() => setDisplayPostModal(null)}>Close</button>
+                <Icon path={mdiDotsHorizontal} onClick={() => setDisplayPostModal(null)} />
                 <button>Edit Post</button>
-                <button>Delete Post</button>
+                <button onClick={() => deletePost(post.id)}>Delete Post</button>
               </div>
             )}
           </div>

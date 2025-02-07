@@ -76,3 +76,15 @@
   justify-content: center;
   align-items: center;
 }
+
+.post_edit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+
+.post_edit > svg {
+  margin: 0.25em;
+  height: 50px;
+  align-self: flex-end;
+}
