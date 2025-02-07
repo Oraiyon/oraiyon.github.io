@@ -30,27 +30,6 @@ const post_post = [
         text: req.body.text
       }
     });
-    // const postList = await prisma.post.findMany({
-    //   where: {
-    //     authorId: req.body.author
-    //   },
-    //   orderBy: {
-    //     postDate: "desc"
-    //   },
-    //   include: {
-    //     Likes: {
-    //       include: {
-    //         likedBy: true
-    //       }
-    //     },
-    //     _count: {
-    //       select: {
-    //         Comments: true
-    //       }
-    //     },
-    //     author: true
-    //   }
-    // });
     res.status(200).json(post);
   })
 ];
@@ -166,11 +145,11 @@ export const delete_post = expressAsyncHandler(async (req, res, next) => {
       postId: req.params.postId
     }
   });
-  await prisma.reply.deleteMany({
-    where: {
-      postId: req.params.postId
-    }
-  });
+  // await prisma.reply.deleteMany({
+  //   where: {
+  //     postId: req.params.postId
+  //   }
+  // });
   await prisma.comment.deleteMany({
     where: {
       postId: req.params.postId
