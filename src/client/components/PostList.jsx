@@ -96,11 +96,12 @@ const PostList = (props) => {
           <div key={post.id} className={styles.post_container}>
             {!props.displayLikes && !props.displayComments ? (
               <div className={styles.post_card}>
-                {props.mode !== "profile" ? (
+                {/* {props.mode !== "profile" ? (
                   <ToProfile searchedUser={post.author} user={props.user} />
                 ) : (
                   <ToProfile searchedUser={post.author} />
-                )}
+                )} */}
+                <ToProfile searchedUser={post.author} user={props.user} />
                 <img
                   src={post.image}
                   className={styles.post_image}
