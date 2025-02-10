@@ -26,7 +26,7 @@ const User = () => {
     return (
       <div className={styles.user_container}>
         <ProfileHeader userProfile={user} mode={"user"} />
-        <PostList user={user} mode={"profile"} post={post} setPost={setPost} userProfile={null} />
+        <PostList user={user} mode={"user"} post={post} setPost={setPost} userProfile={null} />
       </div>
     );
   } else {

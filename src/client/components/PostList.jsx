@@ -16,7 +16,7 @@ const PostList = (props) => {
         if (props.mode === "search") {
           response = await fetch("/api/get/posts");
           // For User.jsx
-        } else if (props.mode === "profile" && props.user) {
+        } else if (props.mode === "user" && props.user) {
           response = await fetch(`/api/${props.user.id}/get/posts`);
           // For Profile.jsx
         } else if (props.mode === "profile" && props.userProfile) {
@@ -92,9 +92,16 @@ const PostList = (props) => {
 
   const deletePost = async (id) => {
     try {
-      const response = await fetch(`/api/${props.user.id}/delete/${id}`, {
-        method: "DELETE"
-      });
+      let response;
+      if (props.mode === "user") {
+        response = await fetch(`/api/${props.user.id}/delete/${id}/user`, {
+          method: "DELETE"
+        });
+      } else {
+        response = await fetch(`/api/${props.user.id}/delete/${id}`, {
+          method: "DELETE"
+        });
+      }
       const data = await response.json();
       if (data) {
         setDisplayPostModal(null);

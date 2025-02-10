@@ -63,6 +63,7 @@ router.get("/api/get/:postId", get_post);
 router.get("/api/:id/get/posts", get_user_posts);
 router.get("/api/:id/get/following/posts", get_following_posts);
 router.delete("/api/:id/delete/:postId", delete_post);
+router.delete("/api/:id/delete/:postId/user", delete_post);
 router.put("/api/update/post/:postId", put_update_post);
 
 // likeControllers

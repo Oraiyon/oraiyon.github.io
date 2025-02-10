@@ -19,18 +19,26 @@ cloudinary.config({
 const post_post = [
   upload.single("file"),
   expressAsyncHandler(async (req, res, next) => {
-    const imageURL = await cloudinary.uploader.upload(req.file.path, {
-      folder: "odinbook_posts"
-    });
-    await unlink(req.file.path);
     const post = await prisma.post.create({
       data: {
         authorId: req.body.author,
-        image: imageURL.secure_url,
         text: req.body.text
       }
     });
-    res.status(200).json(post);
+    const imageURL = await cloudinary.uploader.upload(req.file.path, {
+      folder: "odinbook_posts",
+      public_id: post.id
+    });
+    await unlink(req.file.path);
+    const finalPost = await prisma.post.update({
+      where: {
+        id: post.id
+      },
+      data: {
+        image: imageURL.secure_url
+      }
+    });
+    res.status(200).json(finalPost);
   })
 ];
 
@@ -156,24 +164,51 @@ export const delete_post = expressAsyncHandler(async (req, res, next) => {
       authorId: req.params.id
     }
   });
-  const postList = await prisma.post.findMany({
-    orderBy: {
-      postDate: "desc"
-    },
-    include: {
-      Likes: {
-        include: {
-          likedBy: true
-        }
+  cloudinary.uploader.destroy(req.params.postId);
+  const path = req.path.split("/");
+  let postList;
+  if (path[path.length - 1] === "user") {
+    postList = await prisma.post.findMany({
+      where: {
+        authorId: req.params.id
       },
-      _count: {
-        select: {
-          Comments: true
-        }
+      orderBy: {
+        postDate: "desc"
       },
-      author: true
-    }
-  });
+      include: {
+        Likes: {
+          include: {
+            likedBy: true
+          }
+        },
+        _count: {
+          select: {
+            Comments: true
+          }
+        },
+        author: true
+      }
+    });
+  } else {
+    postList = await prisma.post.findMany({
+      orderBy: {
+        postDate: "desc"
+      },
+      include: {
+        Likes: {
+          include: {
+            likedBy: true
+          }
+        },
+        _count: {
+          select: {
+            Comments: true
+          }
+        },
+        author: true
+      }
+    });
+  }
   res.status(200).json(postList);
 });
 
