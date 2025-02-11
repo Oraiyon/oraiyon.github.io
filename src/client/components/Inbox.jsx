@@ -21,6 +21,8 @@ const Inbox = () => {
           : ""}
       </div>
     );
+  } else {
+    window.location.href = "/login";
   }
 };
 

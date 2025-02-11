@@ -36,6 +36,8 @@ const Settings = () => {
         <button onClick={logout}>Log Out</button>
       </div>
     );
+  } else {
+    window.location.href = "/login";
   }
 };
 

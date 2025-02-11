@@ -37,6 +37,8 @@ const Feed = () => {
         />
       </div>
     );
+  } else {
+    window.location.href = "/login";
   }
 };
 

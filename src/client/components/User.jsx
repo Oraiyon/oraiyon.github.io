@@ -30,7 +30,7 @@ const User = () => {
       </div>
     );
   } else {
-    return <p></p>;
+    window.location.href = "/login";
   }
 };
 

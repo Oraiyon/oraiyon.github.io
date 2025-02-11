@@ -78,6 +78,8 @@ const EditAccount = () => {
         </form>
       </>
     );
+  } else {
+    window.location.href = "/login";
   }
 };
 
