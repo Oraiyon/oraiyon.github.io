@@ -22,18 +22,6 @@ const Profile = () => {
       }
     };
     fetchUserProfile();
-    // const fetchUser = async () => {
-    //   try {
-    //     const response = await fetch(`/api/${user.id}/profile`);
-    //     const data = await response.json();
-    //     setUser(data);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    // if (user) {
-    //   fetchUser();
-    // }
   }, [updateUserInfo]);
 
   return (
