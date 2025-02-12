@@ -68,13 +68,13 @@ const Login = () => {
               ref={passwordInputRef}
             />
             {!revealPassword ? (
-              <button onClick={handleRevealPassword}>
+              <div onClick={handleRevealPassword}>
                 <Icon path={mdiEye}></Icon>
-              </button>
+              </div>
             ) : (
-              <button onClick={handleRevealPassword}>
+              <div onClick={handleRevealPassword}>
                 <Icon path={mdiEyeOff}></Icon>
-              </button>
+              </div>
             )}
           </div>
         </div>

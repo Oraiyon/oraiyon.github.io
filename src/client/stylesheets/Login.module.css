@@ -49,9 +49,10 @@
   border-right: none;
 }
 
-.login_password > button {
+.login_password > div {
   width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 2px solid black;
 }
