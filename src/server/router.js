@@ -7,12 +7,6 @@ import signup, {
   put_user_profile_picture,
   put_user_profile_username
 } from "./controllers/userControllers.js";
-import post_request, {
-  delete_request,
-  get_received_requests,
-  get_sent_request,
-  get_sent_requests
-} from "./controllers/requestControllers.js";
 import post_follow, {
   delete_follow,
   get_follow,
@@ -29,7 +23,6 @@ import post_post, {
 } from "./controllers/postControllers.js";
 import post_like_post from "./controllers/likeControllers.js";
 import post_comment, { get_comments } from "./controllers/commentController.js";
-import post_reply from "./controllers/replyController.js";
 
 const router = express.Router();
 
@@ -41,13 +34,6 @@ router.get("/api/search/:username", get_search_user);
 router.get("/api/:id/profile", get_user_profile);
 router.put("/api/user/edit/username", put_user_profile_username);
 router.put("/api/user/edit/picture", put_user_profile_picture);
-
-// requestControllers
-// router.get("/api/:sender/requests/:receiver", get_sent_request);
-// router.get("/api/:id/sent/requests", get_sent_requests);
-// router.get("/api/:id/received/requests", get_received_requests);
-// router.post("/api/create/request", post_request);
-// router.delete("/api/delete/request/:sender/:receiver", delete_request);
 
 // followControllers
 router.get("/api/:sender/following/:receiver", get_follow);
@@ -72,8 +58,5 @@ router.post("/api/:id/like/post", post_like_post);
 // commentControllers
 router.post("/api/post/create/comment", post_comment);
 router.get("/api/get/:postId/comments", get_comments);
-
-// replyControllers
-router.post("/api/post/create/reply", post_reply);
 
 export default router;
