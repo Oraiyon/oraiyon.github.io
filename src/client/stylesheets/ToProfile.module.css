@@ -2,6 +2,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  gap: 0.25em;
 }
 
 .user_card > svg {
