@@ -19,6 +19,7 @@ const EditAccount = () => {
         body: formData
       });
       const data = await response.json();
+      setUser(data);
     } catch (error) {
       console.log(error);
     }
@@ -57,14 +58,38 @@ const EditAccount = () => {
     }
   };
 
+  const handleDefaultPicture = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await fetch("/api/user/edit/default", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: user.id
+        })
+      });
+      const data = await response.json();
+      setUser(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (user) {
     return (
       <>
         <BackHeader mode={"settings"} user={user} />
-        <form className={styles.edit_form} onSubmit={submitEdits} encType="multipart/form-data">
+        <form className={styles.edit_form} encType="multipart/form-data">
           <div>
             <label htmlFor="change_profile_picture">Change Profile Picture</label>
             <input type="file" id="change_profile_picture" ref={profilePictureRef} />
+            {user.profilePicture ? (
+              <button onClick={handleDefaultPicture}>Use Default Profile Picture</button>
+            ) : (
+              ""
+            )}
             <label htmlFor="edit_username">Edit Username</label>
             <input
               type="text"
@@ -74,7 +99,7 @@ const EditAccount = () => {
               ref={usernameRef}
             />
           </div>
-          <button>Submit</button>
+          <button onClick={submitEdits}>Submit</button>
         </form>
       </>
     );

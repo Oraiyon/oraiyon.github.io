@@ -206,8 +206,10 @@ export const put_user_profile_username = [
 export const put_user_profile_picture = [
   upload.single("file"),
   expressAsyncHandler(async (req, res, next) => {
+    await cloudinary.uploader.destroy(req.body.id);
     const imageURL = await cloudinary.uploader.upload(req.file.path, {
-      folder: "odinbook_profiles"
+      folder: "odinbook_profiles",
+      public_id: req.body.id
     });
     await unlink(req.file.path);
     const user = await prisma.user.update({
@@ -215,15 +217,48 @@ export const put_user_profile_picture = [
         id: req.body.id
       },
       data: {
-        profilePicturerofilePicture: imageURL.secure_url
+        profilePicture: imageURL.secure_url
       },
       include: {
-        Followers: true,
-        Following: true
+        Followers: {
+          include: {
+            receiver: true
+          }
+        },
+        Following: {
+          include: {
+            sender: true
+          }
+        }
       }
     });
     res.status(200).json(user);
   })
 ];
+
+export const put_user_default_picture = expressAsyncHandler(async (req, res, next) => {
+  await cloudinary.uploader.destroy(req.body.id);
+  const user = await prisma.user.update({
+    where: {
+      id: req.body.id
+    },
+    data: {
+      profilePicture: null
+    },
+    include: {
+      Followers: {
+        include: {
+          receiver: true
+        }
+      },
+      Following: {
+        include: {
+          sender: true
+        }
+      }
+    }
+  });
+  res.status(200).json(user);
+});
 
 export default signup;
