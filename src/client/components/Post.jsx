@@ -23,7 +23,6 @@ const Post = () => {
           const response = await fetch(`/api/get/${window.location.href.split("/")[5]}`);
           const data = await response.json();
           setPostInfo(data);
-          console.log(data);
         } catch (error) {
           console.log(error);
         }
@@ -95,14 +94,16 @@ const Post = () => {
   if (user) {
     return (
       <>
-        <div className={styles.write_post_container}>
+        <div className={styles.create_post_container}>
           <form action="" className={styles.post_form} onSubmit={postInfo ? updatePost : writePost}>
-            <label htmlFor="image">{postInfo ? "Update" : "Create"} A Post</label>
-            {postInfo ? (
-              ""
-            ) : (
-              <input type="file" name="file" id="image" ref={imageRef} onChange={handlePreview} />
-            )}
+            <div>
+              <label htmlFor="image">{postInfo ? "Update" : "Create"} A Post</label>
+              {postInfo ? (
+                ""
+              ) : (
+                <input type="file" name="file" id="image" ref={imageRef} onChange={handlePreview} />
+              )}
+            </div>
             <div className={styles.image_preview}>
               <img src={postInfo ? postInfo.image : ""} alt="" ref={previewImageRef} />
             </div>

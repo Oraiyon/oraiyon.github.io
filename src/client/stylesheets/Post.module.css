@@ -1,4 +1,4 @@
-.write_post_container {
+.create_post_container {
   height: 100%;
 }
 
@@ -6,6 +6,10 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.post_form > div {
+  padding: 0.25em;
 }
 
 .image_preview {
