@@ -44,7 +44,7 @@ const Search = () => {
         <div className={styles.searchUserList_container}>
           {searchedUsersList.map((searchedUser) => (
             <div key={searchedUser.id} className={styles.search_card}>
-              <ToProfile searchedUser={searchedUser} user={user} />
+              <ToProfile searchedUser={searchedUser} user={user} mode={"search"} />
             </div>
           ))}
         </div>

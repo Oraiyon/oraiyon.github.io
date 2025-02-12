@@ -21,7 +21,11 @@ const ToProfile = (props) => {
             <p>{props.searchedUser.username}</p>
           </div>
         </Link>
-        <Icon path={mdiDotsHorizontal} onClick={handlePostSettings}></Icon>
+        {props.mode === "search" ? (
+          ""
+        ) : (
+          <Icon path={mdiDotsHorizontal} onClick={handlePostSettings}></Icon>
+        )}
       </div>
     );
   };
