@@ -32,11 +32,26 @@
   flex-direction: column;
 }
 
-.login_form > div > input {
+.login_form > div input {
   width: 100%;
   padding: 0.5em;
 }
 
 .login_form > p {
   color: red;
+}
+
+.login_password {
+  display: flex;
+}
+
+.login_password > input {
+  border-right: none;
+}
+
+.login_password > button {
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

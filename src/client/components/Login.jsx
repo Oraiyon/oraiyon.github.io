@@ -1,11 +1,14 @@
 import { Link, useOutletContext } from "react-router-dom";
 import styles from "../stylesheets/Login.module.css";
 import { useEffect, useRef, useState } from "react";
+import Icon from "@mdi/react";
+import { mdiEye, mdiEyeOff } from "@mdi/js";
 
 const Login = () => {
   const [user, setUser] = useOutletContext();
 
   const [invalidLogin, setInvalidLogin] = useState(null);
+  const [revealPassword, setRevealPassword] = useState(false);
 
   const usernameInputRef = useRef(null);
   const passwordInputRef = useRef(null);
@@ -42,8 +45,13 @@ const Login = () => {
     }
   };
 
+  const handleRevealPassword = (e) => {
+    e.preventDefault();
+    setRevealPassword((r) => !r);
+  };
+
   return (
-    <div onSubmit={submitLogin} className={styles.login_container}>
+    <div className={styles.login_container}>
       <h1>Log In</h1>
       <form className={styles.login_form}>
         <div>
@@ -52,10 +60,26 @@ const Login = () => {
         </div>
         <div>
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" ref={passwordInputRef} />
+          <div className={styles.login_password}>
+            <input
+              type={!revealPassword ? "password" : "text"}
+              id="password"
+              name="password"
+              ref={passwordInputRef}
+            />
+            {!revealPassword ? (
+              <button onClick={handleRevealPassword}>
+                <Icon path={mdiEye}></Icon>
+              </button>
+            ) : (
+              <button onClick={handleRevealPassword}>
+                <Icon path={mdiEyeOff}></Icon>
+              </button>
+            )}
+          </div>
         </div>
         <p>{invalidLogin}</p>
-        <button>Log In</button>
+        <button onClick={submitLogin}>Log In</button>
       </form>
       <div>
         <p>Don't have have an account? </p>
