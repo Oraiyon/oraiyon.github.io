@@ -19,12 +19,9 @@ model User {
   password       String
   Followers      Follow[]  @relation("Follower")
   Following      Follow[]  @relation("Following")
-  // SentRequests     Request[] @relation("SentRequests")
-  // ReceivedRequests Request[] @relation("ReceivedRequests")
   Posts          Post[]
   Comments       Comment[]
   Likes          Likes[]
-  Reply          Reply[]
   profilePicture String?
 
   @@map("users")
@@ -41,17 +38,6 @@ model Follow {
   @@map("follows")
 }
 
-// model Request {
-//   id          String   @id @default(uuid())
-//   requestDate DateTime @default(now())
-//   sender      User     @relation("SentRequests", fields: [senderId], references: [id])
-//   senderId    String
-//   receiver    User     @relation("ReceivedRequests", fields: [receiverId], references: [id])
-//   receiverId  String
-
-//   @@map("requests")
-// }
-
 model Post {
   id       String    @id @default(uuid())
   postDate DateTime  @default(now())
@@ -60,7 +46,6 @@ model Post {
   text     String    @db.VarChar(100)
   Comments Comment[]
   Likes    Likes[]
-  Reply    Reply[]
   image    String?
 
   @@map("posts")
@@ -85,24 +70,6 @@ model Comment {
   text        String   @db.VarChar(100)
   post        Post     @relation(fields: [postId], references: [id])
   postId      String
-  Reply       Reply[]
-  // Replies     Comment[] @relation("Reply")
-  // reply       Comment?  @relation("Reply", fields: [replyId], references: [id])
-  // replyId     String?
 
   @@map("comments")
-}
-
-model Reply {
-  id        String   @id @default(uuid())
-  replyDate DateTime @default(now())
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  String
-  text      String   @db.VarChar(100)
-  replyTo   Comment  @relation(fields: [replyToId], references: [id])
-  replyToId String
-  post      Post     @relation(fields: [postId], references: [id])
-  postId    String
-
-  @@map("replies")
 }
