@@ -160,7 +160,7 @@ const PostList = (props) => {
           </div>
         ))
       ) : (
-        <div className={styles.no_posts}>No posts found</div>
+        <div className={styles.no_posts}>No Posts Found.</div>
       )}
     </>
   );
