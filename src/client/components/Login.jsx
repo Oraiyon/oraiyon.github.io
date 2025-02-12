@@ -57,12 +57,12 @@ const Login = () => {
         <p>{invalidLogin}</p>
         <button>Log In</button>
       </form>
-      <p>
-        Don't have have an account?{" "}
+      <div>
+        <p>Don't have have an account? </p>
         <Link to={"/signup"} ref={signupLinkRef}>
           Sign Up!
         </Link>
-      </p>
+      </div>
       {user ? <Link to={`/feed`} ref={toUserRef}></Link> : ""}
     </div>
   );

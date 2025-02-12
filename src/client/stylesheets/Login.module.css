@@ -11,6 +11,14 @@
   font-size: xx-large;
 }
 
+.login_container > div {
+  display: flex;
+}
+
+.login_container > div > a {
+  text-decoration: underline;
+}
+
 .login_form {
   width: 100%;
   padding: 0.5em;

@@ -86,12 +86,12 @@ const Signup = () => {
         </div>
         <button>Sign up</button>
       </form>
-      <p>
-        Already have an account?{" "}
+      <div>
+        <p>Already have an account? </p>
         <Link to={"/login"} ref={loginLinkRef}>
           Log In!
         </Link>
-      </p>
+      </div>
     </div>
   );
 };

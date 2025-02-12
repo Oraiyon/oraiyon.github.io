@@ -7,6 +7,14 @@
   position: relative;
 }
 
+.signup_container > div {
+  display: flex;
+}
+
+.signup_container > div > a {
+  text-decoration: underline;
+}
+
 .signup_form {
   width: 100%;
   padding: 0.5em;
