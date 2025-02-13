@@ -37,11 +37,6 @@ export const get_comments = expressAsyncHandler(async (req, res, next) => {
       postId: req.params.postId
     },
     include: {
-      Reply: {
-        orderBy: {
-          replyDate: "desc"
-        }
-      },
       author: true,
       post: true
     },
