@@ -3,6 +3,8 @@ import styles from "../stylesheets/ProfileHeader.module.css";
 import Follows from "./Follows";
 import { Link } from "react-router-dom";
 import DisplayProfilePicture from "./DisplayProfilePicture";
+import Icon from "@mdi/react";
+import { mdiDotsHorizontal } from "@mdi/js";
 
 const ProfileHeader = (props) => {
   const [alreadyFollowing, setAlreadyFollowing] = useState(false);
@@ -67,20 +69,16 @@ const ProfileHeader = (props) => {
 
   return (
     <header className={styles.header_container}>
-      <div>
-        <div>
-          <div>
-            <h1>{props.userProfile.username}</h1>
-            <DisplayProfilePicture user={props.userProfile} />
-          </div>
-          <Follows user={props.user} userProfile={props.userProfile} />
-        </div>
+      <header className={styles.header_user_header}>
+        <h1>{props.userProfile.username}</h1>
         {props.mode === "user" ? (
-          <button onClick={() => settingsLinkRef.current.click()}>Settings</button>
+          <Icon path={mdiDotsHorizontal} onClick={() => settingsLinkRef.current.click()} />
         ) : (
           ""
         )}
-      </div>
+        <DisplayProfilePicture user={props.userProfile} />
+        <Follows user={props.user} userProfile={props.userProfile} />
+      </header>
       {props.user ? (
         <>
           {alreadyFollowing ? (
