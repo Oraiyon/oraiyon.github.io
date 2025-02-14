@@ -69,16 +69,20 @@ const ProfileHeader = (props) => {
 
   return (
     <header className={styles.header_container}>
-      <header className={styles.header_user_header}>
+      <div className={styles.header_user_info}>
         <h1>{props.userProfile.username}</h1>
         {props.mode === "user" ? (
-          <Icon path={mdiDotsHorizontal} onClick={() => settingsLinkRef.current.click()} />
+          <Icon
+            path={mdiDotsHorizontal}
+            onClick={() => settingsLinkRef.current.click()}
+            className={styles.header_settings_icon}
+          />
         ) : (
-          ""
+          <p className={styles.header_settings_icon}></p>
         )}
         <DisplayProfilePicture user={props.userProfile} />
         <Follows user={props.user} userProfile={props.userProfile} />
-      </header>
+      </div>
       {props.user ? (
         <>
           {alreadyFollowing ? (

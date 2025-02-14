@@ -4,18 +4,26 @@
   border-bottom: 2px solid black;
 }
 
-.header_user_header {
+.header_user_info {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   padding: 0.25em;
 }
 
-.header_user_header > div {
-  justify-self: end;
+.header_user_info > h1 {
+  grid-column: 1;
 }
 
-.header_user_header > svg:first-of-type {
+.header_user_info > div {
+  justify-self: end;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.header_settings_icon {
   justify-self: end;
   max-width: 50px;
+  grid-column: 2;
+  grid-row: 1;
 }
