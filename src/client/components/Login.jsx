@@ -45,11 +45,6 @@ const Login = () => {
     }
   };
 
-  const handleRevealPassword = (e) => {
-    e.preventDefault();
-    setRevealPassword((r) => !r);
-  };
-
   return (
     <div className={styles.login_container}>
       <h1>Log In</h1>
@@ -67,15 +62,9 @@ const Login = () => {
               name="password"
               ref={passwordInputRef}
             />
-            {!revealPassword ? (
-              <div onClick={handleRevealPassword}>
-                <Icon path={mdiEye}></Icon>
-              </div>
-            ) : (
-              <div onClick={handleRevealPassword}>
-                <Icon path={mdiEyeOff}></Icon>
-              </div>
-            )}
+            <div onClick={() => setRevealPassword((r) => !r)}>
+              <Icon path={!revealPassword ? mdiEye : mdiEyeOff}></Icon>
+            </div>
           </div>
         </div>
         <p>{invalidLogin}</p>
