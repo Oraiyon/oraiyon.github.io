@@ -85,11 +85,9 @@ const ProfileHeader = (props) => {
       </div>
       {props.user ? (
         <>
-          {alreadyFollowing ? (
-            <button onClick={handleUnfollow}>Unfollow</button>
-          ) : (
-            <button onClick={handleFollow}>Follow</button>
-          )}
+          <button onClick={alreadyFollowing ? handleUnfollow : handleFollow}>
+            {alreadyFollowing ? "Unfollow" : "Follow"}
+          </button>
         </>
       ) : (
         ""
