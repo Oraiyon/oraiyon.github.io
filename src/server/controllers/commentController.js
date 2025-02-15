@@ -16,11 +16,6 @@ const post_comment = expressAsyncHandler(async (req, res, next) => {
       postId: req.body.post
     },
     include: {
-      Reply: {
-        orderBy: {
-          replyDate: "desc"
-        }
-      },
       author: true
     },
     orderBy: {
