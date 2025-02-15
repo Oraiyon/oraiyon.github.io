@@ -36,7 +36,7 @@ const Profile = () => {
             setUpdateUserInfo={setUpdateUserInfo}
           />
           <PostList
-            user={null}
+            user={user}
             mode={"profile"}
             post={post}
             setPost={setPost}

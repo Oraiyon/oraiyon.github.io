@@ -47,10 +47,34 @@ const post_like_post = [
       });
       res.status(200).json(postList);
       return;
+    } else if (req.body.page === "user" || req.body.page === "profile") {
+      const postList = await prisma.post.findMany({
+        where: {
+          authorId: req.body.authorId
+        },
+        orderBy: {
+          postDate: "desc"
+        },
+        include: {
+          Likes: {
+            include: {
+              likedBy: true
+            }
+          },
+          _count: {
+            select: {
+              Comments: true
+            }
+          },
+          author: true
+        }
+      });
+      res.status(200).json(postList);
+      return;
     }
     next();
   }),
-  // Just jump to this with react
+  // For /feed
   get_following_posts
 ];
 

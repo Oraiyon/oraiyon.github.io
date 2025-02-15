@@ -45,9 +45,11 @@ const PostList = (props) => {
     return <p className={styles.post_date}>{date.toLocaleDateString("en-us", options)}</p>;
   };
 
-  const likePost = async (postId) => {
+  const likePost = async (post) => {
     try {
       if (props.user) {
+        const pathname = window.location.pathname.split("/");
+        const pathtype = pathname[pathname.length - 1];
         const response = await fetch(`/api/${props.user.id}/like/post`, {
           method: "POST",
           headers: {
@@ -55,8 +57,9 @@ const PostList = (props) => {
           },
           body: JSON.stringify({
             id: props.user.id,
-            post: postId,
-            page: "search"
+            post: post.id,
+            page: pathtype ? pathtype : "search",
+            authorId: post.authorId
           })
         });
         const data = await response.json();
@@ -84,7 +87,7 @@ const PostList = (props) => {
     return (
       <Icon
         path={liked ? mdiHeart : mdiCardsHeartOutline}
-        onClick={() => likePost(props.post.id)}
+        onClick={() => likePost(props.post)}
         className={styles.like_icon}
       ></Icon>
     );
@@ -127,7 +130,7 @@ const PostList = (props) => {
                 <img
                   src={post.image}
                   className={styles.post_image}
-                  onClick={() => likePost(post.id)}
+                  onClick={() => likePost(post)}
                 />
                 <p>{post.text}</p>
                 <div className={styles.post_info}>
