@@ -63,20 +63,17 @@ const Comments = () => {
         {postComments && postComments.length ? (
           postComments.map((comment) => (
             <div key={comment.id} className={styles.comment_card}>
+              <ToProfile
+                searchedUser={comment.author}
+                user={user}
+                mode={"comments"}
+                comment={comment}
+                setPostComments={setPostComments}
+              />
               <div>
-                {/* {props.mode !== "profile" ? (
-                  <ToProfile searchedUser={comment.author} user={user}/>
-                ) : (
-                  <ToProfile
-                    searchedUser={comment.author}
-                    mode={"profile"}
-                    post={post}
-                  />
-                )} */}
-                <ToProfile searchedUser={comment.author} user={user} />
+                <p>{comment.text}</p>
                 <DisplayDate date={comment.commentDate} />
               </div>
-              <p>{comment.text}</p>
             </div>
           ))
         ) : (

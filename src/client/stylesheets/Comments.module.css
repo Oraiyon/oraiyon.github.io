@@ -37,8 +37,15 @@
   gap: 0.25em;
 }
 
-.comment_card > div {
+.comment_card > div:last-of-type {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+}
+
+.comment_card > div:last-of-type > p:first-of-type {
+  overflow-wrap: break-word;
+}
+
+.comment_card > div:last-of-type > p:last-of-type {
+  align-self: flex-end;
 }
