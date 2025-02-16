@@ -12,12 +12,10 @@
   width: 100%;
 }
 
-.post_card > p:first-of-type {
+.post_card > p {
   width: 100%;
-}
-
-.post_card > p:last-of-type {
   cursor: default;
+  text-overflow: clip;
 }
 
 .post_card > a {
