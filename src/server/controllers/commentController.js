@@ -42,4 +42,42 @@ export const get_comments = expressAsyncHandler(async (req, res, next) => {
   res.status(200).json(commentList);
 });
 
+export const delete_comment = expressAsyncHandler(async (req, res, next) => {
+  const deletedComment = await prisma.comment.findFirst({
+    where: {
+      id: req.params.commentId,
+      authorId: req.params.authorId
+    }
+  });
+  if (!deletedComment.text) {
+    await prisma.comment.update({
+      where: {
+        id: req.params.commentId,
+        authorId: req.params.authorId
+      },
+      data: {
+        text: "---Comment Deleted---",
+        deletedText: deletedComment.text
+      }
+    });
+    const commentList = await prisma.comment.findMany({
+      where: {
+        postId: req.params.postId
+      },
+      include: {
+        author: true,
+        post: true
+      },
+      orderBy: {
+        commentDate: "asc"
+      }
+    });
+    res.status(200).json(commentList);
+    return;
+  } else {
+    res.status(200).json(false);
+    return;
+  }
+});
+
 export default post_comment;

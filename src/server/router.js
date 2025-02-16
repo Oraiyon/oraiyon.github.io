@@ -23,7 +23,7 @@ import post_post, {
   put_update_post
 } from "./controllers/postControllers.js";
 import post_like_post from "./controllers/likeControllers.js";
-import post_comment, { get_comments } from "./controllers/commentController.js";
+import post_comment, { delete_comment, get_comments } from "./controllers/commentController.js";
 
 const router = express.Router();
 
@@ -60,5 +60,6 @@ router.post("/api/:id/like/post", post_like_post);
 // commentControllers
 router.post("/api/post/create/comment", post_comment);
 router.get("/api/get/:postId/comments", get_comments);
+router.delete("/api/:authorId/delete/:postId/:commentId", delete_comment);
 
 export default router;

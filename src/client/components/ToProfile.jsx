@@ -3,14 +3,49 @@ import styles from "../stylesheets/ToProfile.module.css";
 import DisplayProfilePicture from "./DisplayProfilePicture";
 import { useEffect } from "react";
 import Icon from "@mdi/react";
-import { mdiDotsHorizontal } from "@mdi/js";
+import { mdiDotsHorizontal, mdiDelete } from "@mdi/js";
 
 const ToProfile = (props) => {
   useEffect(() => {}, []);
 
   const DisplayPostHeader = () => {
-    const handlePostSettings = () => {
-      props.setDisplayPostModal(props.searchedUser.id);
+    const deleteComment = async () => {
+      try {
+        const response = await fetch(
+          `/api/${props.user.id}/delete/${props.comment.postId}/${props.comment.id}`,
+          { method: "DELETE" }
+        );
+        const data = await response.json();
+        console.log(data);
+        if (data) {
+          props.setPostComments(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    const DisplaySettings = () => {
+      if (props.mode === "search") {
+        return;
+      } else if (props.mode === "comments" && props.comment.text !== "---Comment Deleted---") {
+        return (
+          <Icon
+            path={mdiDelete}
+            onClick={deleteComment}
+            className={styles.header_delete_icon}
+          ></Icon>
+        );
+      } else if (props.mode === "likes") {
+        return <Icon path={mdiDotsHorizontal} onClick={() => console.log("LIKES")}></Icon>;
+      } else {
+        return (
+          <Icon
+            path={mdiDotsHorizontal}
+            onClick={() => props.setDisplayPostModal(props.searchedUser.id)}
+          ></Icon>
+        );
+      }
     };
 
     return (
@@ -21,11 +56,7 @@ const ToProfile = (props) => {
             <p>{props.searchedUser.username}</p>
           </div>
         </Link>
-        {props.mode === "search" ? (
-          ""
-        ) : (
-          <Icon path={mdiDotsHorizontal} onClick={handlePostSettings}></Icon>
-        )}
+        <DisplaySettings />
       </div>
     );
   };

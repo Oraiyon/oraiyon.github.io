@@ -19,3 +19,7 @@
   width: 50px;
   cursor: pointer;
 }
+
+.header_delete_icon {
+  max-width: 25px;
+}
