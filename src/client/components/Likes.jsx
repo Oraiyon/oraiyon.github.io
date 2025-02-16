@@ -28,16 +28,7 @@ const Likes = () => {
         {post && post.Likes.length ? (
           post.Likes.map((like) => (
             <div key={like.id} className={styles.like_card}>
-              {/* {props.mode !== "profile" ? (
-              <ToProfile searchedUser={like.likedBy} user={user} />
-            ) : (
-              <ToProfile
-                searchedUser={like.likedBy}
-                mode={"profile"}
-                post={post}
-              />
-            )} */}
-              <ToProfile searchedUser={like.likedBy} user={user} />
+              <ToProfile searchedUser={like.likedBy} user={user} mode={"likes"} />
             </div>
           ))
         ) : (

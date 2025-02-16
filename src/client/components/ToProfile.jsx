@@ -16,7 +16,6 @@ const ToProfile = (props) => {
           { method: "DELETE" }
         );
         const data = await response.json();
-        console.log(data);
         if (data) {
           props.setPostComments(data);
         }
@@ -26,7 +25,7 @@ const ToProfile = (props) => {
     };
 
     const DisplaySettings = () => {
-      if (props.mode === "search") {
+      if (props.mode === "search" || props.mode === "likes") {
         return;
       } else if (props.mode === "comments" && props.comment.text !== "---Comment Deleted---") {
         return (
@@ -36,8 +35,6 @@ const ToProfile = (props) => {
             className={styles.header_delete_icon}
           ></Icon>
         );
-      } else if (props.mode === "likes") {
-        return <Icon path={mdiDotsHorizontal} onClick={() => console.log("LIKES")}></Icon>;
       } else {
         return (
           <Icon
