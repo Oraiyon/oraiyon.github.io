@@ -1,3 +1,11 @@
+.post_container > div:last-of-type > .post_info {
+  border-bottom: 0;
+}
+
+.post_container > div:first-of-type > .post_info {
+  border-bottom: 2px solid black;
+}
+
 .post_card {
   display: flex;
   flex-direction: column;

@@ -3,7 +3,7 @@ import styles from "../stylesheets/PostList.module.css";
 import ToProfile from "./ToProfile";
 import { Link } from "react-router-dom";
 import Icon from "@mdi/react";
-import { mdiCardsHeartOutline, mdiComment, mdiHeart, mdiDotsHorizontal } from "@mdi/js";
+import { mdiCardsHeartOutline, mdiCommentOutline, mdiHeart, mdiDotsHorizontal } from "@mdi/js";
 
 const PostList = (props) => {
   const [postList, setPostList] = useState([]);
@@ -118,50 +118,52 @@ const PostList = (props) => {
   return (
     <>
       {postList && postList.length ? (
-        postList.map((post) => (
-          <div key={post.id} className={styles.post_container}>
-            {displayPostModal !== post.authorId ? (
-              <div className={styles.post_card}>
-                <ToProfile
-                  searchedUser={post.author}
-                  user={props.user}
-                  setDisplayPostModal={setDisplayPostModal}
-                />
-                <img
-                  src={post.image}
-                  className={styles.post_image}
-                  onClick={() => likePost(post)}
-                />
-                <p>{post.text}</p>
-                <div className={styles.post_info}>
-                  <div className={styles.post_clicks}>
-                    <div className={styles.like_section}>
-                      <HandleLikedPost user={props.user} post={post} />
-                      <Link to={`/${post.id}/likes`}>
-                        <p>{post.Likes.length}</p>
-                      </Link>
+        <div className={styles.post_container}>
+          {postList.map((post) => (
+            <>
+              {displayPostModal !== post.authorId ? (
+                <div key={post.id} className={styles.post_card}>
+                  <ToProfile
+                    searchedUser={post.author}
+                    user={props.user}
+                    setDisplayPostModal={setDisplayPostModal}
+                  />
+                  <img
+                    src={post.image}
+                    className={styles.post_image}
+                    onClick={() => likePost(post)}
+                  />
+                  <p>{post.text}</p>
+                  <div className={styles.post_info}>
+                    <div className={styles.post_clicks}>
+                      <div className={styles.like_section}>
+                        <HandleLikedPost user={props.user} post={post} />
+                        <Link to={`/${post.id}/likes`}>
+                          <p>{post.Likes.length}</p>
+                        </Link>
+                      </div>
+                      <div className={styles.comments_section}>
+                        <Link to={`/${post.id}/comments`}>
+                          <Icon path={mdiCommentOutline} className={styles.post_icon}></Icon>
+                          <p>{post._count.Comments}</p>
+                        </Link>
+                      </div>
                     </div>
-                    <div className={styles.comments_section}>
-                      <Link to={`/${post.id}/comments`}>
-                        <Icon path={mdiComment} className={styles.post_icon}></Icon>
-                        <p>{post._count.Comments}</p>
-                      </Link>
-                    </div>
+                    <DisplayDate date={post.postDate} />
                   </div>
-                  <DisplayDate date={post.postDate} />
                 </div>
-              </div>
-            ) : (
-              <div className={styles.post_edit}>
-                <Icon path={mdiDotsHorizontal} onClick={() => setDisplayPostModal(null)} />
-                <Link to={`/post/edit/${post.id}`}>
-                  <button>Edit Post</button>
-                </Link>
-                <button onClick={() => deletePost(post.id)}>Delete Post</button>
-              </div>
-            )}
-          </div>
-        ))
+              ) : (
+                <div className={styles.post_edit}>
+                  <Icon path={mdiDotsHorizontal} onClick={() => setDisplayPostModal(null)} />
+                  <Link to={`/post/edit/${post.id}`}>
+                    <button>Edit Post</button>
+                  </Link>
+                  <button onClick={() => deletePost(post.id)}>Delete Post</button>
+                </div>
+              )}
+            </>
+          ))}
+        </div>
       ) : (
         <div className={styles.no_posts}>No Posts Found.</div>
       )}

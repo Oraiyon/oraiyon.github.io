@@ -16,6 +16,10 @@
   border: 1px solid red;
 }
 
+.edit_form > button {
+  border-bottom: 0;
+}
+
 .edit_username {
   padding: 0.5em;
 }

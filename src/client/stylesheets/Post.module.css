@@ -12,6 +12,11 @@
   padding: 0.25em;
 }
 
+.post_form > input,
+.post_form > button {
+  border-bottom: 0;
+}
+
 .image_preview {
   flex: 1;
 }

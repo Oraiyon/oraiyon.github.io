@@ -5,6 +5,10 @@
   height: 100%;
 }
 
+.settings_container > button {
+  border-bottom: 0;
+}
+
 .settings_links {
   display: flex;
   flex-direction: column;
