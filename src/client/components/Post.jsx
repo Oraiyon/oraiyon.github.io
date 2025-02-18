@@ -117,7 +117,7 @@ const Post = () => {
               placeholder="Write a caption..."
               defaultValue={postInfo ? postInfo.text : ""}
             ></input>
-            <button>{postInfo ? "Update" : "Post"}</button>
+            <button>{postInfo ? "Update Post" : "Create Post"}</button>
           </form>
         </div>
         <Link to={"/"} ref={homeRef}></Link>
