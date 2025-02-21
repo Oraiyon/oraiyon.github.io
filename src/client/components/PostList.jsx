@@ -120,12 +120,13 @@ const PostList = (props) => {
       {postList && postList.length ? (
         <div className={styles.post_container}>
           {postList.map((post) =>
-            displayPostModal !== post.authorId ? (
+            displayPostModal !== post.id ? (
               <div key={post.id} className={styles.post_card}>
                 <ToProfile
                   searchedUser={post.author}
                   user={props.user}
                   setDisplayPostModal={setDisplayPostModal}
+                  postId={post.id}
                 />
                 <img
                   src={post.image}
