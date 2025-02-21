@@ -164,7 +164,7 @@ export const delete_post = expressAsyncHandler(async (req, res, next) => {
       authorId: req.params.id
     }
   });
-  await cloudinary.uploader.destroy(req.params.postId);
+  await cloudinary.uploader.destroy(`odinbook_posts/${req.params.postId}`);
   const path = req.path.split("/");
   let postList;
   if (path[path.length - 1] === "user") {
