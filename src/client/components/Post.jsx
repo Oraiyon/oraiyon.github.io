@@ -2,11 +2,14 @@ import { Link, useOutletContext } from "react-router-dom";
 import styles from "../stylesheets/Post.module.css";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+import Icon from "@mdi/react";
+import { mdiAutorenew } from "@mdi/js";
 
 const Post = () => {
   const [user, setUser, post, setPost] = useOutletContext();
 
   const [postInfo, setPostInfo] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const imageRef = useRef(null);
   const textRef = useRef(null);
@@ -35,6 +38,7 @@ const Post = () => {
     try {
       e.preventDefault();
       if (imageRef.current.value && textRef.current.value) {
+        setLoading(true);
         const formData = new FormData();
         formData.append("author", user.id);
         formData.append("file", imageRef.current.files[0]);
@@ -45,6 +49,7 @@ const Post = () => {
         });
         const data = await response.json();
         if (data) {
+          setLoading(false);
           imageRef.current.value = "";
           textRef.current.value = "";
           previewImageRef.current.src = "";
@@ -58,6 +63,7 @@ const Post = () => {
   const updatePost = async (e) => {
     try {
       e.preventDefault();
+      setLoading(true);
       const response = await fetch(`/api/update/post/${postInfo.id}`, {
         method: "PUT",
         headers: {
@@ -70,6 +76,7 @@ const Post = () => {
       });
       const data = await response.json();
       if (data) {
+        setLoading(false);
         homeRef.current.click();
       }
     } catch (error) {
@@ -106,6 +113,7 @@ const Post = () => {
             </div>
             <div className={styles.image_preview}>
               <img src={postInfo ? postInfo.image : ""} alt="" ref={previewImageRef} />
+              {loading ? <Icon path={mdiAutorenew}></Icon> : ""}
             </div>
             <label htmlFor="text"></label>
             <input

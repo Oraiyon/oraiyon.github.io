@@ -19,6 +19,26 @@
 
 .image_preview {
   flex: 1;
+  position: relative;
+  height: fit-content;
+}
+
+.image_preview > img,
+.image_preview > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.image_preview > img {
+  padding: 0 0.25em;
+  transform: translate(-50%, -50%);
+}
+
+.image_preview > svg {
+  z-index: 1;
+  width: 40%;
+  animation: loading 2s linear infinite;
 }
 
 .image_preview > img {
@@ -28,4 +48,13 @@
 
 .post_caption {
   padding: 0.5em;
+}
+
+@keyframes loading {
+  from {
+    transform: translate(-50%, -50%) rotate(0);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
