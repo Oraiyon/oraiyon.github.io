@@ -153,7 +153,7 @@ const PostList = (props) => {
                 </div>
               </div>
             ) : (
-              <div className={styles.post_edit}>
+              <div className={styles.post_edit} key={post.id}>
                 <Icon path={mdiDotsHorizontal} onClick={() => setDisplayPostModal(null)} />
                 <Link to={`/post/edit/${post.id}`}>
                   <button>Edit Post</button>
