@@ -4,6 +4,10 @@
   border-bottom: 2px solid black;
 }
 
+.header_container > button {
+  border-bottom: 0;
+}
+
 .header_user_info {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
