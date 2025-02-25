@@ -81,7 +81,7 @@ const Comments = () => {
         )}
       </div>
       {user ? (
-        <div>
+        <div className={styles.post_comment}>
           <label htmlFor="commentInput"></label>
           <input
             type="text"
@@ -90,7 +90,7 @@ const Comments = () => {
             name="text"
             ref={commentInputRef}
           />
-          <button onClick={() => sendComment(post.id)}>Send</button>
+          <button onClick={() => sendComment(post.id)}>Post Comment</button>
         </div>
       ) : (
         ""

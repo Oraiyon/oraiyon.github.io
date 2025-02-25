@@ -13,21 +13,17 @@
   overflow-y: hidden;
 }
 
-.comments_container > div > p {
-  padding: 0.5em;
-}
-
-.comments_container > div:last-of-type {
+.post_comment {
   display: flex;
+  flex-direction: column;
 }
 
-.comments_container > div:last-of-type > input {
+.post_comment > input {
   padding: 0.5em;
-  flex-grow: 1;
 }
 
-.comments_container > div:last-of-type > button {
-  padding: 0.5em;
+.post_comment > button {
+  border-bottom: 0;
 }
 
 .comment_card {
