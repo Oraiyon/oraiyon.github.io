@@ -25,6 +25,10 @@
   align-self: flex-end;
 }
 
+.post_edit > p {
+  text-overflow: clip;
+}
+
 .post_modal_buttons {
   display: flex;
   gap: 0.25em;
