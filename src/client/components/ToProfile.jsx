@@ -39,7 +39,7 @@ const ToProfile = (props) => {
         return (
           <Icon
             path={mdiDotsHorizontal}
-            onClick={() => props.setDisplayPostModal(props.postId)}
+            onClick={() => props.setDisplayPostModal(props.post)}
           ></Icon>
         );
       }

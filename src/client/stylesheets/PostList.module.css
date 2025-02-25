@@ -1,3 +1,7 @@
+.post_container > {
+  position: relative;
+}
+
 .post_container > div:first-of-type > .post_info {
   border-bottom: 2px solid black;
 }
@@ -77,20 +81,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.post_edit {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25em;
-}
-
-.post_edit > svg {
-  margin: 0.25em;
-  height: 50px;
-  align-self: flex-end;
-}
-
-.post_edit > a > button {
-  width: 100%;
 }
