@@ -9,6 +9,10 @@
   height: 50px;
 }
 
+.user_card > p {
+  overflow-x: scroll;
+}
+
 .post_header {
   display: flex;
   justify-content: space-between;
