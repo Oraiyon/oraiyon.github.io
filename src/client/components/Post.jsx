@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRef } from "react";
 import Icon from "@mdi/react";
 import { mdiAutorenew } from "@mdi/js";
+import BackHeader from "./BackHeader";
 
 const Post = () => {
   const [user, setUser, post, setPost] = useOutletContext();
@@ -103,6 +104,7 @@ const Post = () => {
       <>
         <div className={styles.create_post_container}>
           <form action="" className={styles.post_form} onSubmit={postInfo ? updatePost : writePost}>
+            {postInfo ? <BackHeader /> : ""}
             <div>
               <label htmlFor="image">{postInfo ? "Update" : "Create"} A Post</label>
               {postInfo ? (

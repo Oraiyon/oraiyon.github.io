@@ -43,6 +43,12 @@ const BackHeader = (props) => {
         <p>Settings</p>
       </div>
     );
+  } else {
+    return (
+      <div className={styles.backHeader_container_profile}>
+        <Icon path={mdiArrowLeft} onClick={() => navigate(-1)} />
+      </div>
+    );
   }
 };
 
