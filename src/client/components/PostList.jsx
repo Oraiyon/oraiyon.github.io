@@ -3,7 +3,7 @@ import styles from "../stylesheets/PostList.module.css";
 import ToProfile from "./ToProfile";
 import { Link } from "react-router-dom";
 import Icon from "@mdi/react";
-import { mdiCardsHeartOutline, mdiCommentOutline, mdiHeart, mdiDotsHorizontal } from "@mdi/js";
+import { mdiCardsHeartOutline, mdiCommentOutline, mdiHeart } from "@mdi/js";
 import PostModal from "./PostModal";
 
 const PostList = (props) => {
