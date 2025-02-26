@@ -1,13 +1,10 @@
 import { Link } from "react-router-dom";
 import styles from "../stylesheets/ToProfile.module.css";
 import DisplayProfilePicture from "./DisplayProfilePicture";
-import { useEffect } from "react";
 import Icon from "@mdi/react";
 import { mdiDotsHorizontal, mdiDelete } from "@mdi/js";
 
 const ToProfile = (props) => {
-  useEffect(() => {}, []);
-
   const DisplayPostHeader = () => {
     const deleteComment = async () => {
       try {
@@ -35,6 +32,8 @@ const ToProfile = (props) => {
             className={styles.header_delete_icon}
           ></Icon>
         );
+      } else if (props.mode === "comments" && props.comment.text === "---Comment Deleted---") {
+        return "";
       } else {
         return (
           <Icon

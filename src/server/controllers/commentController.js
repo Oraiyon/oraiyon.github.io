@@ -49,7 +49,7 @@ export const delete_comment = expressAsyncHandler(async (req, res, next) => {
       authorId: req.params.authorId
     }
   });
-  if (!deletedComment.text) {
+  if (deletedComment && deletedComment.text !== "---Comment Deleted---") {
     await prisma.comment.update({
       where: {
         id: req.params.commentId,
