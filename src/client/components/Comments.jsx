@@ -71,7 +71,7 @@ const Comments = () => {
                 setPostComments={setPostComments}
               />
               <div>
-                <p>{comment.text}</p>
+                <p className={!comment.deletedText ? "" : styles.deleted_comment}>{comment.text}</p>
                 <DisplayDate date={comment.commentDate} />
               </div>
             </div>
