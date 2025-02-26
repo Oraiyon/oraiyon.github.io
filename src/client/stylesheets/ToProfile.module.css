@@ -10,13 +10,17 @@
 }
 
 .user_card > p {
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 
 .post_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.post_header > a {
+  flex: 1;
 }
 
 .post_header > svg {

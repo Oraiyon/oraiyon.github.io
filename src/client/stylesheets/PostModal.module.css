@@ -25,6 +25,10 @@
   align-self: flex-end;
 }
 
+.post_edit > img {
+  border: 2px solid black;
+}
+
 .post_edit > p {
   text-overflow: clip;
 }
