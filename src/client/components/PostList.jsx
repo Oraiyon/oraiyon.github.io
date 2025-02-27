@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiCardsHeartOutline, mdiCommentOutline, mdiHeart } from "@mdi/js";
 import PostModal from "./PostModal";
+import DisplayDate from "./DisplayDate";
 
 const PostList = (props) => {
   const [postList, setPostList] = useState([]);
@@ -35,16 +36,6 @@ const PostList = (props) => {
       setPostList(props.followingPosts);
     }
   }, [props.followingPosts]);
-
-  const DisplayDate = (props) => {
-    const date = new Date(props.date);
-    const options = {
-      month: "short",
-      day: "numeric",
-      year: "numeric"
-    };
-    return <p className={styles.post_date}>{date.toLocaleDateString("en-us", options)}</p>;
-  };
 
   const likePost = async (post) => {
     try {
@@ -127,16 +118,12 @@ const PostList = (props) => {
               </div>
             </div>
           ))}
-          {displayPostModal ? (
-            <PostModal
-              user={props.user}
-              displayPostModal={displayPostModal}
-              setDisplayPostModal={setDisplayPostModal}
-              setPostList={setPostList}
-            />
-          ) : (
-            ""
-          )}
+          <PostModal
+            user={props.user}
+            displayPostModal={displayPostModal}
+            setDisplayPostModal={setDisplayPostModal}
+            setPostList={setPostList}
+          />
         </div>
       ) : (
         <p className={styles.no_posts}>No Posts Found</p>

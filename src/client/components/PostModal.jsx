@@ -2,6 +2,7 @@ import styles from "../stylesheets/PostModal.module.css";
 import Icon from "@mdi/react";
 import { Link } from "react-router-dom";
 import { mdiDotsHorizontal } from "@mdi/js";
+import DisplayDate from "./DisplayDate";
 
 const PostModal = (props) => {
   const deletePost = async (id) => {
@@ -33,6 +34,7 @@ const PostModal = (props) => {
           <Icon path={mdiDotsHorizontal} onClick={() => props.setDisplayPostModal(null)} />
           <img src={props.displayPostModal.image} alt="" />
           <p>{props.displayPostModal.text}</p>
+          <DisplayDate date={props.displayPostModal.postDate} />
           <div className={styles.post_modal_buttons}>
             <Link to={`/post/edit/${props.displayPostModal.id}`}>
               <button>Edit Post</button>
