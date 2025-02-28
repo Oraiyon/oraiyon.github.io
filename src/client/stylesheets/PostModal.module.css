@@ -8,9 +8,10 @@
   flex-direction: column;
 }
 
-.post_modal > div:first-of-type {
+.modal_dark_area {
   background-color: rgba(0, 0, 0, 0.5);
   flex: 1;
+  min-height: 10%;
 }
 
 .post_edit {
