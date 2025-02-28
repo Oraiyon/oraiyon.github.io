@@ -2,9 +2,8 @@ import { Link, useOutletContext } from "react-router-dom";
 import styles from "../stylesheets/Post.module.css";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-import Icon from "@mdi/react";
-import { mdiAutorenew } from "@mdi/js";
 import BackHeader from "./BackHeader";
+import DisplayLoading from "./DisplayLoading";
 
 const Post = () => {
   const [user, setUser, post, setPost] = useOutletContext();
@@ -115,7 +114,7 @@ const Post = () => {
             </div>
             <div className={styles.image_preview}>
               <img src={postInfo ? postInfo.image : ""} alt="" ref={previewImageRef} />
-              {loading ? <Icon path={mdiAutorenew}></Icon> : ""}
+              <DisplayLoading loading={loading} />
             </div>
             <label htmlFor="text"></label>
             <input
