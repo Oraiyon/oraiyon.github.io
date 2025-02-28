@@ -1,13 +1,17 @@
 import styles from "../stylesheets/PostModal.module.css";
 import Icon from "@mdi/react";
 import { Link } from "react-router-dom";
-import { mdiDotsHorizontal } from "@mdi/js";
+import { mdiDotsHorizontal, mdiAutorenew } from "@mdi/js";
 import DisplayDate from "./DisplayDate";
 import { useState } from "react";
+import DisplayLoading from "./DisplayLoading";
 
 const PostModal = (props) => {
+  const [loading, setLoading] = useState(false);
+
   const deletePost = async (id) => {
     try {
+      setLoading(true);
       let response;
       if (props.mode === "user") {
         response = await fetch(`/api/${props.user.id}/delete/${id}/user`, {
@@ -20,6 +24,7 @@ const PostModal = (props) => {
       }
       const data = await response.json();
       if (data) {
+        setLoading(false);
         props.setDisplayPostModal(null);
         props.setPostList(data);
       }
@@ -37,7 +42,10 @@ const PostModal = (props) => {
         ></div>
         <div className={styles.post_edit}>
           <Icon path={mdiDotsHorizontal} onClick={() => props.setDisplayPostModal(null)} />
-          <img src={props.displayPostModal.image} alt="" />
+          <div className={styles.post_image}>
+            <img src={props.displayPostModal.image} alt="" />
+            <DisplayLoading loading={loading} />
+          </div>
           <p>{props.displayPostModal.text}</p>
           <DisplayDate date={props.displayPostModal.postDate} />
           <div className={styles.post_modal_buttons}>

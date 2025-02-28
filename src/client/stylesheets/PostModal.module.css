@@ -30,10 +30,6 @@
   align-self: flex-end;
 }
 
-.post_edit > img {
-  border: 2px solid black;
-}
-
 .post_edit > p {
   text-overflow: clip;
 }
@@ -49,4 +45,13 @@
 
 .delete_message {
   align-self: center;
+}
+
+.post_image {
+  position: relative;
+}
+
+.post_image > img {
+  border: 2px solid black;
+  width: 100%;
 }
