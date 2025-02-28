@@ -148,22 +148,24 @@ export const get_following_posts = expressAsyncHandler(async (req, res, next) =>
 });
 
 export const delete_post = expressAsyncHandler(async (req, res, next) => {
-  await prisma.likes.deleteMany({
-    where: {
-      postId: req.params.postId
-    }
-  });
-  await prisma.comment.deleteMany({
-    where: {
-      postId: req.params.postId
-    }
-  });
-  await prisma.post.delete({
-    where: {
-      id: req.params.postId,
-      authorId: req.params.id
-    }
-  });
+  const [deletedLikes, deletedComments, deletePost] = await prisma.$transaction([
+    prisma.likes.deleteMany({
+      where: {
+        postId: req.params.postId
+      }
+    }),
+    prisma.comment.deleteMany({
+      where: {
+        postId: req.params.postId
+      }
+    }),
+    prisma.post.delete({
+      where: {
+        id: req.params.postId,
+        authorId: req.params.id
+      }
+    })
+  ]);
   await cloudinary.uploader.destroy(`odinbook_posts/${req.params.postId}`);
   const path = req.path.split("/");
   let postList;
