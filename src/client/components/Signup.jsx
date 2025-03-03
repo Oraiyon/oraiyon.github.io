@@ -29,10 +29,12 @@ const Signup = () => {
           })
         });
         const data = await response.json();
-        if (data) {
+        if (data === "User Created") {
           loginLinkRef.current.click();
+        } else if (data === "Username Already Taken") {
+          setInvalidUsername(data);
         } else {
-          setInvalidUsername("Username is already taken.");
+          console.log(data);
         }
       }
     } catch (error) {

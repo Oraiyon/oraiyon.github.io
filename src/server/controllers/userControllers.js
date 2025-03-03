@@ -43,8 +43,12 @@ const signup = [
             username: req.body.username
           }
         });
-        if (!errors.isEmpty() || usernameTaken) {
-          res.status(200).json(false);
+        if (!errors.isEmpty()) {
+          res.status(200).json("User Creation Failed");
+          return;
+        }
+        if (usernameTaken) {
+          res.status(200).json("Username Already Taken");
           return;
         }
         const user = await prisma.user.create({
@@ -53,7 +57,7 @@ const signup = [
             password: hashedPassword
           }
         });
-        res.status(200).json(true);
+        res.status(200).json("User Created");
       }
     });
   })
@@ -263,28 +267,39 @@ export const put_user_default_picture = expressAsyncHandler(async (req, res, nex
 
 export const delete_user = [
   expressAsyncHandler(async (req, res, next) => {
-    const [deletedLikes, deletedComments, deletedPosts, deleteUser] = await prisma.$transaction([
-      prisma.likes.deleteMany({
-        where: {
-          likedById: req.params.id
-        }
-      }),
-      prisma.comment.deleteMany({
-        where: {
-          authorId: req.params.id
-        }
-      }),
-      prisma.post.deleteMany({
-        where: {
-          authorId: req.params.id
-        }
-      }),
-      prisma.user.delete({
-        where: {
-          id: req.params.id
-        }
-      })
-    ]);
+    const [deletedLikes, deletedComments, deletedPosts, deleteFollows, deleteUser] =
+      await prisma.$transaction([
+        prisma.likes.deleteMany({
+          where: {
+            likedById: req.params.id
+          }
+        }),
+        prisma.comment.deleteMany({
+          where: {
+            authorId: req.params.id
+          }
+        }),
+        prisma.post.deleteMany({
+          where: {
+            authorId: req.params.id
+          }
+        }),
+        prisma.follow.deleteMany({
+          where: {
+            senderId: req.params.id
+          }
+        }),
+        prisma.follow.deleteMany({
+          where: {
+            receiverId: req.params.id
+          }
+        }),
+        prisma.user.delete({
+          where: {
+            id: req.params.id
+          }
+        })
+      ]);
     await cloudinary.uploader.destroy(req.params.id);
     next();
   }),
