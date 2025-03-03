@@ -12,25 +12,27 @@
 .settings_links {
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
 }
 
-.settings_links > a {
+.settings_links > a,
+.delete_account {
   padding: 0.25em;
-  border: 2px solid black;
-  border-left: 0;
-  border-right: 0;
 }
 
-.settings_links > a:first-of-type {
-  border-top: 0;
-}
-
-.settings_links > a > div {
+.settings_links > a > div,
+.delete_account {
   display: flex;
   align-items: center;
 }
 
-.settings_links > a > div > svg {
+.settings_links > a > div > svg,
+.delete_account > svg {
   max-width: 50px;
+}
+
+.delete_account {
+  border: 2px solid black;
+  border-left: 0;
+  border-right: 0;
+  cursor: pointer;
 }

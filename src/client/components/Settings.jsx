@@ -2,10 +2,14 @@ import { Link, useOutletContext } from "react-router-dom";
 import styles from "../stylesheets/Settings.module.css";
 import BackHeader from "./BackHeader";
 import Icon from "@mdi/react";
-import { mdiAccountEdit } from "@mdi/js";
+import { mdiAccountEdit, mdiDelete } from "@mdi/js";
+import DeleteModal from "./DeleteModal";
+import { useState } from "react";
 
 const Settings = () => {
   const [user, setUser, post, setPost] = useOutletContext();
+
+  const [displayDeleteModal, setDisplayDeleteModal] = useState(false);
 
   const logout = async () => {
     try {
@@ -31,9 +35,18 @@ const Settings = () => {
                 <p>Edit Account Information</p>
               </div>
             </Link>
+            <div className={styles.delete_account} onClick={() => setDisplayDeleteModal(true)}>
+              <Icon path={mdiDelete}></Icon>
+              <p>Delete Account</p>
+            </div>
           </div>
         </div>
         <button onClick={logout}>Log Out</button>
+        <DeleteModal
+          user={user}
+          displayDeleteModal={displayDeleteModal}
+          setDisplayDeleteModal={setDisplayDeleteModal}
+        />
       </div>
     );
   } else {

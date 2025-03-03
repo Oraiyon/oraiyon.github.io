@@ -261,4 +261,34 @@ export const put_user_default_picture = expressAsyncHandler(async (req, res, nex
   res.status(200).json(user);
 });
 
+export const delete_user = [
+  expressAsyncHandler(async (req, res, next) => {
+    const [deletedLikes, deletedComments, deletedPosts, deleteUser] = await prisma.$transaction([
+      prisma.likes.deleteMany({
+        where: {
+          likedById: req.params.id
+        }
+      }),
+      prisma.comment.deleteMany({
+        where: {
+          authorId: req.params.id
+        }
+      }),
+      prisma.post.deleteMany({
+        where: {
+          authorId: req.params.id
+        }
+      }),
+      prisma.user.delete({
+        where: {
+          id: req.params.id
+        }
+      })
+    ]);
+    await cloudinary.uploader.destroy(req.params.id);
+    next();
+  }),
+  logout
+];
+
 export default signup;
