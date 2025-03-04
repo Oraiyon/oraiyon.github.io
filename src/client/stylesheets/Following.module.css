@@ -10,7 +10,7 @@
 }
 
 .following_list {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .following_card {

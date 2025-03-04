@@ -1,5 +1,5 @@
 .likes_container {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .like_card {
