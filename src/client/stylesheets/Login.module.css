@@ -5,6 +5,7 @@
   align-items: center;
   height: 100%;
   position: relative;
+  padding: 0.25em;
 }
 
 .login_container > h1 {
@@ -15,13 +16,12 @@
   display: flex;
 }
 
-.login_container > div > a {
+.login_container > a {
   text-decoration: underline;
 }
 
 .login_form {
   width: 100%;
-  padding: 0.5em;
   display: flex;
   flex-direction: column;
   gap: 0.5em;

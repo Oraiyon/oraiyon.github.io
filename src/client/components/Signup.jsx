@@ -88,12 +88,12 @@ const Signup = () => {
         </div>
         <button>Sign up</button>
       </form>
-      <div>
-        <p>Already have an account? </p>
+      <p>
+        Already have an account?{" "}
         <Link to={"/login"} ref={loginLinkRef}>
           Log In!
-        </Link>
-      </div>
+        </Link>{" "}
+      </p>
     </div>
   );
 };
