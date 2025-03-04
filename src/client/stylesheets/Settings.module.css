@@ -6,7 +6,8 @@
 }
 
 .settings_container > button {
-  border-bottom: 0;
+  border: 0;
+  border-top: 2px solid black;
 }
 
 .settings_links {

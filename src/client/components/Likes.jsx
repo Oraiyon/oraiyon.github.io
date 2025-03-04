@@ -32,7 +32,7 @@ const Likes = () => {
             </div>
           ))
         ) : (
-          <p className={styles.no_likes}>No likes.</p>
+          <p className={styles.no_likes}>No Likes</p>
         )}
       </div>
     </div>

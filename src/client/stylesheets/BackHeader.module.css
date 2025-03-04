@@ -2,7 +2,7 @@
 .backHeader_container_profile {
   max-height: 50px;
   height: 100%;
-  border: 2px solid black;
+  border-bottom: 2px solid black;
   width: 100%;
   display: flex;
   align-items: center;
@@ -10,6 +10,7 @@
 
 .backHeader_container > svg,
 .backHeader_container_profile > svg {
-  max-width: 50px;
+  max-height: 50px;
   cursor: pointer;
+  align-self: flex-start;
 }

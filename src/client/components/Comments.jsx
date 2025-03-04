@@ -77,7 +77,7 @@ const Comments = () => {
             </div>
           ))
         ) : (
-          <p>No Comments.</p>
+          <p>No Comments</p>
         )}
       </div>
       {user ? (

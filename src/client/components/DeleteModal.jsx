@@ -18,12 +18,8 @@ const DeleteModal = (props) => {
 
   if (props.displayDeleteModal) {
     return (
-      <div className={styles.delete_modal}>
-        <div
-          onClick={() => props.setDisplayDeleteModal(false)}
-          className={styles.modal_dark_area}
-        ></div>
-        <div className={styles.delete_user}>
+      <div className={styles.delete_modal} onClick={() => props.setDisplayDeleteModal(false)}>
+        <div className={styles.delete_user} onClick={(e) => e.stopPropagation()}>
           <div>
             <DisplayProfilePicture user={props.user} />
             <p>{props.user.username}</p>
@@ -31,10 +27,6 @@ const DeleteModal = (props) => {
           <p>Confirm Deletion Of Account</p>
           <button onClick={deleteUser}>DELETE</button>
         </div>
-        <div
-          onClick={() => props.setDisplayDeleteModal(false)}
-          className={styles.modal_dark_area}
-        ></div>
       </div>
     );
   }

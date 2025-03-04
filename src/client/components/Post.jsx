@@ -105,11 +105,20 @@ const Post = () => {
           <form action="" className={styles.post_form} onSubmit={postInfo ? updatePost : writePost}>
             {postInfo ? <BackHeader /> : ""}
             <div>
-              <label htmlFor="image">{postInfo ? "Update" : "Create"} A Post</label>
+              <label htmlFor="image" style={{ padding: 0.25 + "em" }}>
+                {postInfo ? "Update" : "Create"} A Post
+              </label>
               {postInfo ? (
                 ""
               ) : (
-                <input type="file" name="file" id="image" ref={imageRef} onChange={handlePreview} />
+                <input
+                  type="file"
+                  name="file"
+                  id="image"
+                  ref={imageRef}
+                  onChange={handlePreview}
+                  style={{ paddingLeft: 0.25 + "em" }}
+                />
               )}
             </div>
             <div className={styles.image_preview}>

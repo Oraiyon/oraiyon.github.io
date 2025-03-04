@@ -1,3 +1,7 @@
+.post_container {
+  /* overflow-y: scroll; */
+}
+
 .post_container > div:first-of-type > .post_info {
   border-bottom: 2px solid black;
 }

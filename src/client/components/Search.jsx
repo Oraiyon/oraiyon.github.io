@@ -3,6 +3,8 @@ import styles from "../stylesheets/Search.module.css";
 import { useEffect, useRef, useState } from "react";
 import PostList from "./PostList";
 import ToProfile from "./ToProfile";
+import Icon from "@mdi/react";
+import { mdiMagnify } from "@mdi/js";
 
 const Search = () => {
   const [user, setUser, post, setPost] = useOutletContext();
@@ -30,7 +32,8 @@ const Search = () => {
   return (
     <div className={styles.search_container}>
       <div className={styles.searchBar}>
-        <label htmlFor="searchBar"></label>
+        <label htmlFor="searchBar">Search</label>
+        <Icon path={mdiMagnify}></Icon>
         <input
           type="text"
           id="searchBar"

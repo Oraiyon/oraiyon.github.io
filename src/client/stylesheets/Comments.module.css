@@ -13,6 +13,10 @@
   overflow-y: hidden;
 }
 
+.comments_container > div > p {
+  padding: 0.25em;
+}
+
 .deleted_comment {
   color: gray;
 }
@@ -24,10 +28,13 @@
 
 .post_comment > input {
   padding: 0.5em;
+  border: 0;
+  border-top: 2px solid black;
 }
 
 .post_comment > button {
-  border-bottom: 0;
+  border: 0;
+  border-top: 2px solid black;
 }
 
 .comment_card {

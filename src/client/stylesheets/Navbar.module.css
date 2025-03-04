@@ -1,7 +1,8 @@
 .navbar_container {
   width: 100%;
   display: flex;
-  border: 2px solid black;
+  border: 0;
+  border-top: 2px solid black;
 }
 
 .navbar_container > a {

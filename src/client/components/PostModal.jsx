@@ -35,12 +35,8 @@ const PostModal = (props) => {
 
   if (props.displayPostModal) {
     return (
-      <div className={styles.post_modal}>
-        <div
-          onClick={() => props.setDisplayPostModal(null)}
-          className={styles.modal_dark_area}
-        ></div>
-        <div className={styles.post_edit}>
+      <div className={styles.post_modal} onClick={() => props.setDisplayPostModal(null)}>
+        <div className={styles.post_edit} onClick={(e) => e.stopPropagation()}>
           <Icon path={mdiDotsHorizontal} onClick={() => props.setDisplayPostModal(null)} />
           <div className={styles.post_image}>
             <img src={props.displayPostModal.image} alt="" />
@@ -55,10 +51,6 @@ const PostModal = (props) => {
             <button onClick={() => deletePost(props.displayPostModal.id)}>Delete Post</button>
           </div>
         </div>
-        <div
-          onClick={() => props.setDisplayPostModal(null)}
-          className={styles.modal_dark_area}
-        ></div>
       </div>
     );
   }
