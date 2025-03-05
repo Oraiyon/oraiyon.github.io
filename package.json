@@ -1,4 +1,5 @@
 {
+  "homepage": "https://oraiyon.github.io/odinbook",
   "name": "odin_book",
   "private": true,
   "version": "0.0.0",
@@ -8,7 +9,9 @@
     "start": "NODE_ENV=production node src/server/main.js",
     "build": "vite build",
     "test": "NODE_ENV=test && vitest",
-    "format": "prettier --write './**/*.{js, jsx, css, md, json}' --config ./.prettierrc"
+    "format": "prettier --write './**/*.{js, jsx, css, md, json}' --config ./.prettierrc",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@mdi/js": "^7.4.47",
