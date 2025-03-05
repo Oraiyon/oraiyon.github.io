@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "comments" ADD COLUMN     "commentDate" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
