@@ -8,5 +8,6 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./tests/setup.js"
-  }
+  },
+  base: "https://oraiyon.github.io/"
 });
