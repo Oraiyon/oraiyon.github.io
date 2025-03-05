@@ -25,7 +25,7 @@ const DeleteModal = (props) => {
             <p>{props.user.username}</p>
           </div>
           <p>Confirm Deletion Of Account</p>
-          <button onClick={deleteUser}>Delete {props.user.username}</button>
+          <button onClick={deleteUser}>Delete Account</button>
         </div>
       </div>
     );
