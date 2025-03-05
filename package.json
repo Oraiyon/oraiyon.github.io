@@ -1,5 +1,5 @@
 {
-  "homepage": "https://oraiyon.github.io/odinbook",
+  "homepage": "https://oraiyon.github.io",
   "name": "odin_book",
   "private": true,
   "version": "0.0.0",
@@ -11,7 +11,7 @@
     "test": "NODE_ENV=test && vitest",
     "format": "prettier --write './**/*.{js, jsx, css, md, json}' --config ./.prettierrc",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -b main -d build"
   },
   "dependencies": {
     "@mdi/js": "^7.4.47",
