@@ -8,6 +8,9 @@ import initializePassport from "./passport_config.js";
 import cookieParser from "cookie-parser";
 import { PrismaSessionStore } from "@quixo3/prisma-session-store";
 import { PrismaClient } from "@prisma/client";
+import compression from "compression";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 
 const app = express();
 
@@ -34,6 +37,18 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 initializePassport(passport);
+
+app.use(compression());
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+//       "img-src": ["'self'", "https://res.cloudinary.com"]
+//     }
+//   })
+// );
+const limiter = rateLimit({ windowMs: 1 * 60 * 1000, limit: 20 });
+// app.use(limiter);
 
 app.use("/", router);
 
